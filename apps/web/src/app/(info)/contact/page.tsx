@@ -12,7 +12,7 @@ import {
   INSTAGRAM_URL,
   getWhatsAppSupportUrl,
 } from '@/lib/contact'
-import { merchantAppPath } from '@/lib/app-urls'
+import { FooterBecomeSellerLink } from '@/components/layout/FooterBecomeSellerLink'
 
 export const metadata = {
   title: 'Contact Us',
@@ -26,7 +26,7 @@ const faqs = [
   },
   {
     q: 'How do I become a merchant?',
-    a: "Joining BharatMart is easy! Click 'Become a Seller' in the footer to start our simplified onboarding process. You'll need a UK business registration and a passion for quality products.",
+    a: "Click 'Become a Seller' in the header or footer and share your business details. Our team will follow up by email.",
   },
   {
     q: 'What if my item arrives damaged?',
@@ -142,13 +142,7 @@ export default function ContactPage() {
             ))}
           </Accordion>
           <p className="mt-8 text-center text-sm text-[#837561]">
-            Want to sell with us?{' '}
-            <a
-              className="font-semibold text-[#7f5700] hover:underline"
-              href={merchantAppPath('/login')}
-            >
-              Become a merchant
-            </a>
+            Want to sell with us? <FooterBecomeSellerLink />
           </p>
         </div>
       </section>

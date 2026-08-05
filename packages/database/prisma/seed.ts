@@ -42,7 +42,7 @@ const categories = [
     slug: 'homemade-foods',
     iconUrl: null as string | null,
     sortOrder: 1,
-    comingSoon: false,
+    comingSoon: true,
     children: [
       { name: 'Homemade Pickles', slug: 'homemade-pickles', sortOrder: 1 },
       { name: 'Homemade Snacks', slug: 'homemade-snacks', sortOrder: 2 },
@@ -54,22 +54,25 @@ const categories = [
     iconUrl: null as string | null,
     sortOrder: 2,
     comingSoon: false,
-    children: [] as Array<{ name: string; slug: string; sortOrder: number }>,
+    children: [
+      { name: 'Rakhi', slug: 'rakhi', sortOrder: 1 },
+      { name: 'Diwali', slug: 'diwali', sortOrder: 2 },
+    ],
   },
   {
     name: 'Indian Clothing',
     slug: 'indian-clothing',
     iconUrl: null as string | null,
     sortOrder: 3,
-    comingSoon: false,
+    comingSoon: true,
     children: [] as Array<{ name: string; slug: string; sortOrder: number }>,
   },
   {
-    name: 'Indian Food',
-    slug: 'indian-food',
+    name: 'Indian Groceries',
+    slug: 'indian-groceries',
     iconUrl: null as string | null,
     sortOrder: 4,
-    comingSoon: false,
+    comingSoon: true,
     children: [] as Array<{ name: string; slug: string; sortOrder: number }>,
   },
   {
@@ -77,7 +80,7 @@ const categories = [
     slug: 'rice',
     iconUrl: null as string | null,
     sortOrder: 5,
-    comingSoon: false,
+    comingSoon: true,
     children: [] as Array<{ name: string; slug: string; sortOrder: number }>,
   },
   {
@@ -86,14 +89,14 @@ const categories = [
     iconUrl: null as string | null,
     sortOrder: 6,
     comingSoon: false,
-    children: [] as Array<{ name: string; slug: string; sortOrder: number }>,
+    children: [{ name: 'Mangoes', slug: 'mangoes', sortOrder: 1 }],
   },
   {
     name: 'Organic Store',
     slug: 'organic-store',
     iconUrl: null as string | null,
     sortOrder: 7,
-    comingSoon: false,
+    comingSoon: true,
     children: [] as Array<{ name: string; slug: string; sortOrder: number }>,
   },
   {
@@ -502,10 +505,10 @@ const products: SeedProduct[] = [
     sku: 'NVS-RCK-015',
   },
 
-  // Festive Collections
+  // Festive Collections — Diwali
   {
     merchantSlug: 'festival-lights-emporium',
-    categorySlug: 'festive-collections',
+    categorySlug: 'diwali',
     name: 'Handcrafted Brass Diya Set',
     slug: 'handcrafted-brass-diya-set',
     description: 'Set of six brass diyas for Diwali and temple rituals - polished and gift-ready.',
@@ -516,7 +519,7 @@ const products: SeedProduct[] = [
   },
   {
     merchantSlug: 'festival-lights-emporium',
-    categorySlug: 'festive-collections',
+    categorySlug: 'diwali',
     name: 'Premium Rangoli Colour Kit',
     slug: 'premium-rangoli-colour-kit',
     description: 'Vibrant rangoli powders with stencils for festive doorway décor.',
@@ -526,13 +529,61 @@ const products: SeedProduct[] = [
   },
   {
     merchantSlug: 'festival-lights-emporium',
-    categorySlug: 'festive-collections',
+    categorySlug: 'diwali',
     name: 'Festive Gift Hamper Classic',
     slug: 'festive-gift-hamper-classic',
     description: 'Assorted sweets, dry fruit and a brass diya in a ready-to-gift box.',
     priceInPence: 3499,
     stockQuantity: 25,
     sku: 'FLE-HMP-003',
+    isFeatured: true,
+  },
+
+  // Rakhi
+  {
+    merchantSlug: 'festival-lights-emporium',
+    categorySlug: 'rakhi',
+    name: 'Premium Designer Rakhi Set',
+    slug: 'premium-designer-rakhi-set',
+    description:
+      'Elegant designer rakhi set with matching roli chawal — ready for Raksha Bandhan gifting across the UK.',
+    priceInPence: 1299,
+    stockQuantity: 60,
+    sku: 'FLE-RKH-001',
+    isFeatured: true,
+  },
+  {
+    merchantSlug: 'festival-lights-emporium',
+    categorySlug: 'rakhi',
+    name: 'Traditional Thread Rakhi Pack (Set of 3)',
+    slug: 'traditional-thread-rakhi-pack',
+    description:
+      'Classic hand-tied thread rakhis in festive colours — a timeless choice for siblings near and far.',
+    priceInPence: 799,
+    stockQuantity: 80,
+    sku: 'FLE-RKH-002',
+    isFeatured: true,
+  },
+  {
+    merchantSlug: 'festival-lights-emporium',
+    categorySlug: 'rakhi',
+    name: 'Kids Special Cartoon Rakhi',
+    slug: 'kids-special-cartoon-rakhi',
+    description: 'Fun kids rakhi with soft motifs — perfect for little brothers and sisters.',
+    priceInPence: 599,
+    stockQuantity: 70,
+    sku: 'FLE-RKH-003',
+  },
+  {
+    merchantSlug: 'festival-lights-emporium',
+    categorySlug: 'rakhi',
+    name: 'Sibling Gift Hamper with Rakhi',
+    slug: 'sibling-gift-hamper-with-rakhi',
+    description:
+      'Thoughtful sibling gift pack with premium rakhi, sweets and a keepsake card for Raksha Bandhan.',
+    priceInPence: 2499,
+    stockQuantity: 35,
+    sku: 'FLE-RKH-004',
     isFeatured: true,
   },
 
@@ -569,10 +620,10 @@ const products: SeedProduct[] = [
     sku: 'SSB-SHR-003',
   },
 
-  // Indian Food
+  // Indian Groceries
   {
     merchantSlug: 'desi-kitchen-staples',
-    categorySlug: 'indian-food',
+    categorySlug: 'indian-groceries',
     name: 'Homestyle Garam Masala 100g',
     slug: 'homestyle-garam-masala-100g',
     description: 'Freshly roasted spice blend for curries, dals and marinades.',
@@ -583,7 +634,7 @@ const products: SeedProduct[] = [
   },
   {
     merchantSlug: 'desi-kitchen-staples',
-    categorySlug: 'indian-food',
+    categorySlug: 'indian-groceries',
     name: 'Toor Dal Premium 1kg',
     slug: 'toor-dal-premium-1kg',
     description: 'Cleaned, polished toor dal for everyday sambar and dal tadka.',
@@ -593,7 +644,7 @@ const products: SeedProduct[] = [
   },
   {
     merchantSlug: 'desi-kitchen-staples',
-    categorySlug: 'indian-food',
+    categorySlug: 'indian-groceries',
     name: 'Ready Biryani Masala Kit',
     slug: 'ready-biryani-masala-kit',
     description: 'Whole spices and powdered masala measured for one family biryani.',
@@ -635,10 +686,10 @@ const products: SeedProduct[] = [
     sku: 'BHU-IDL-003',
   },
 
-  // Seasonal Stuff
+  // Seasonal Stuff — Mangoes
   {
     merchantSlug: 'seasons-bazaar',
-    categorySlug: 'seasonal-stuff',
+    categorySlug: 'mangoes',
     name: 'Alphonso Mango Box (Seasonal)',
     slug: 'alphonso-mango-box-seasonal',
     description: 'Limited-season Alphonso mangoes - pre-order during peak harvest weeks.',
@@ -703,6 +754,12 @@ async function removePreviousTemporaryAuthSeed() {
 
 async function seedCategories() {
   const result = new Map<string, string>()
+
+  // Retire renamed slug so it does not appear as a live top-level category.
+  await prisma.category.updateMany({
+    where: { slug: 'indian-food' },
+    data: { isActive: false, comingSoon: true },
+  })
 
   for (const category of categories) {
     const parent = await prisma.category.upsert({

@@ -9,6 +9,11 @@ dist
 packages/database/generated
 /uploads
 
+# Local Firebase credentials / console snippets — never commit
+firebase details
+firebase-details*
+**/serviceAccount*.json
+
 # Local media source files — never commit (keep the repo light).
 # Product images / merchant logos are stored in Cloudinary; only URLs live in the database.
 assets/

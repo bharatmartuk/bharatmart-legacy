@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-import { Heart, Home, Menu, Package, ShoppingCart, UserCircle } from 'lucide-react'
+import { ChevronDown, Heart, Home, Menu, Package, ShoppingCart, UserCircle } from 'lucide-react'
 import {
   Button,
   Sheet,
@@ -13,25 +13,20 @@ import {
   SheetTrigger,
 } from '@bharatmart/ui'
 import { cn } from '@bharatmart/utils'
-import type { CategorySummary } from '@bharatmart/services'
-import { merchantAppPath } from '@/lib/app-urls'
+import { MARKETING_NAV } from '@/lib/marketing-nav'
+import { BecomeSellerButton } from '@/components/layout/BecomeSellerButton'
 
 const baseLinks = [
   { href: '/', label: 'Home', icon: Home },
-  { href: '/products', label: 'All products', icon: Package },
+  { href: '/products?category=rakhi', label: 'Rakhi shop', icon: Package },
   { href: '/wishlist', label: 'Favourites', icon: Heart, requiresAuth: true },
   { href: '/cart', label: 'Cart', icon: ShoppingCart },
 ] as const
 
-export function MobileNav({
-  isSignedIn,
-  categories = [],
-}: {
-  isSignedIn: boolean
-  categories?: CategorySummary[]
-}) {
+export function MobileNav({ isSignedIn }: { isSignedIn: boolean }) {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const [expanded, setExpanded] = useState<string | null>(null)
   const links = baseLinks.filter(
     (link) => !('requiresAuth' in link && link.requiresAuth) || isSignedIn,
   )
@@ -69,33 +64,73 @@ export function MobileNav({
             )
           })}
 
-          {categories.length > 0 ? (
-            <>
-              <p className="mt-3 px-3 text-xs font-semibold uppercase tracking-wide text-[#837561]">
-                Shop by Categories
-              </p>
-              {categories.map((category) =>
-                category.comingSoon ? (
-                  <span
-                    className="flex items-center justify-between gap-2 rounded-lg px-3 py-3 text-sm text-[#837561]"
-                    key={category.id}
+          <p className="mt-3 px-3 text-xs font-semibold uppercase tracking-wide text-[#837561]">
+            Categories
+          </p>
+          {MARKETING_NAV.map((item) => {
+            if (item.comingSoon && !item.children?.length) {
+              return (
+                <span
+                  className="flex items-center justify-between gap-2 rounded-lg px-3 py-3 text-sm text-[#837561]"
+                  key={item.label}
+                >
+                  {item.label}
+                  <span className="text-[10px] font-semibold uppercase text-[#a83635]">Soon</span>
+                </span>
+              )
+            }
+
+            if (item.children?.length) {
+              const isOpen = expanded === item.label
+              return (
+                <div key={item.label}>
+                  <button
+                    className="flex w-full items-center justify-between rounded-lg px-3 py-3 text-sm font-medium text-[#514534] transition hover:bg-[#f4ede4]"
+                    onClick={() => setExpanded(isOpen ? null : item.label)}
+                    type="button"
                   >
-                    {category.name}
-                    <span className="text-[10px] font-semibold uppercase text-[#a83635]">Soon</span>
-                  </span>
-                ) : (
-                  <Link
-                    className="rounded-lg px-3 py-3 text-sm font-medium text-[#514534] transition hover:bg-[#f4ede4] hover:text-[#7f5700]"
-                    href={`/products?category=${category.slug}`}
-                    key={category.id}
-                    onClick={() => setOpen(false)}
-                  >
-                    {category.name}
-                  </Link>
-                ),
-              )}
-            </>
-          ) : null}
+                    {item.label}
+                    <ChevronDown className={cn('h-4 w-4 transition', isOpen && 'rotate-180')} />
+                  </button>
+                  {isOpen
+                    ? item.children.map((child) =>
+                        child.comingSoon ? (
+                          <span
+                            className="flex items-center justify-between py-2 pl-6 pr-3 text-sm text-[#837561]"
+                            key={child.label}
+                          >
+                            {child.label}
+                            <span className="text-[10px] font-semibold uppercase text-[#a83635]">
+                              Soon
+                            </span>
+                          </span>
+                        ) : (
+                          <Link
+                            className="block rounded-lg py-2 pl-6 pr-3 text-sm text-[#514534] transition hover:bg-[#f4ede4] hover:text-[#7f5700]"
+                            href={child.href}
+                            key={child.label}
+                            onClick={() => setOpen(false)}
+                          >
+                            {child.label}
+                          </Link>
+                        ),
+                      )
+                    : null}
+                </div>
+              )
+            }
+
+            return item.href ? (
+              <Link
+                className="rounded-lg px-3 py-3 text-sm font-medium text-[#514534] transition hover:bg-[#f4ede4] hover:text-[#7f5700]"
+                href={item.href}
+                key={item.label}
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ) : null
+          })}
 
           <div className="my-3 border-t border-[#d6c4ad]" />
           {isSignedIn ? (
@@ -124,16 +159,11 @@ export function MobileNav({
               >
                 Sign up
               </Link>
+              <div className="mt-4 px-3">
+                <BecomeSellerButton className="w-full" onOpen={() => setOpen(false)} />
+              </div>
             </>
           )}
-          {!isSignedIn ? (
-            <a
-              className="mt-4 px-3 text-xs font-medium text-[#837561] hover:text-[#7f5700]"
-              href={merchantAppPath('/login?intent=register')}
-            >
-              Become a seller
-            </a>
-          ) : null}
         </nav>
       </SheetContent>
     </Sheet>

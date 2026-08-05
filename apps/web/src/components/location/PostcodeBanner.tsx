@@ -11,7 +11,6 @@ import {
 import type { CustomerLocation } from '@/lib/customer-location-types'
 
 export function PostcodeBanner({ location }: { location: CustomerLocation }) {
-  const [editing, setEditing] = useState(false)
   const [postcode, setPostcode] = useState(location.postcode ?? '')
   const [error, setError] = useState<string | null>(null)
   const [pending, startTransition] = useTransition()
@@ -27,23 +26,16 @@ export function PostcodeBanner({ location }: { location: CustomerLocation }) {
         toast.error(result.error)
         return
       }
-      setEditing(false)
       toast.success(`Delivery area set to ${result.postcode}`)
     })
   }
 
   return (
     <div className="border-b border-[#e8d9c8] bg-[#f9f3ea]">
-      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 md:flex-row md:items-center md:justify-between md:px-8 lg:px-16">
-        <div className="flex items-start gap-2 text-sm text-[#514534]">
-          <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#7f5700]" />
-          <p>
-            <span className="font-medium text-[#1e1b16]">
-              Enter your postcode to see delivery availability
-            </span>
-            {' '}
-            and merchants that serve your area. You can still browse the full marketplace.
-          </p>
+      <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-2.5 sm:flex-row sm:items-center sm:justify-between md:px-8 lg:px-16">
+        <div className="flex items-center gap-2 text-sm text-[#514534]">
+          <MapPin className="h-4 w-4 shrink-0 text-[#7f5700]" />
+          <span className="font-medium text-[#1e1b16]">Your postcode</span>
         </div>
 
         {location.source === 'account' ? (
@@ -54,9 +46,10 @@ export function PostcodeBanner({ location }: { location: CustomerLocation }) {
           >
             <Link href="/account">Add delivery address</Link>
           </Button>
-        ) : editing ? (
+        ) : (
           <div className="flex w-full flex-col gap-2 sm:max-w-md sm:flex-row sm:items-center">
             <Input
+              aria-label="UK postcode"
               className="uppercase sm:max-w-[11rem]"
               disabled={pending}
               onChange={(event) => setPostcode(event.target.value)}
@@ -79,49 +72,24 @@ export function PostcodeBanner({ location }: { location: CustomerLocation }) {
               >
                 Save
               </Button>
-              <Button
-                disabled={pending}
-                onClick={() => {
-                  setEditing(false)
-                  setError(null)
-                }}
-                size="sm"
-                type="button"
-                variant="ghost"
-              >
-                Cancel
-              </Button>
+              {location.status === 'unknown' ? (
+                <Button
+                  disabled={pending}
+                  onClick={() =>
+                    startTransition(async () => {
+                      await skipDeliveryPostcodeAction()
+                      toast.message('Browsing all areas')
+                    })
+                  }
+                  size="sm"
+                  type="button"
+                  variant="ghost"
+                >
+                  Not now
+                </Button>
+              ) : null}
             </div>
             {error ? <p className="text-xs text-[#a83635] sm:col-span-2">{error}</p> : null}
-          </div>
-        ) : (
-          <div className="flex shrink-0 gap-2">
-            <Button
-              className="bg-[#a83635] text-white hover:bg-[#8f2e2d]"
-              onClick={() => setEditing(true)}
-              size="sm"
-              type="button"
-            >
-              Enter postcode
-            </Button>
-            {location.status === 'unknown' ? (
-              <Button
-                disabled={pending}
-                onClick={() =>
-                  startTransition(async () => {
-                    await skipDeliveryPostcodeAction()
-                    toast.message('Browsing all areas', {
-                      description: 'Add a postcode anytime to filter merchants near you.',
-                    })
-                  })
-                }
-                size="sm"
-                type="button"
-                variant="ghost"
-              >
-                Not now
-              </Button>
-            ) : null}
           </div>
         )}
       </div>

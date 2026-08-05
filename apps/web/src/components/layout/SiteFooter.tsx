@@ -3,17 +3,15 @@ import { Instagram, MessageCircle } from 'lucide-react'
 import { Button, Separator } from '@bharatmart/ui'
 import { merchantAppPath } from '@/lib/app-urls'
 import { INSTAGRAM_URL, WHATSAPP_URL } from '@/lib/contact'
+import { FooterBecomeSellerLink } from '@/components/layout/FooterBecomeSellerLink'
 
 const footerGroups = [
   {
     title: 'Shop',
     links: [
-      ['All products', '/products'],
-      ['Homemade Foods', '/products?category=homemade-foods'],
-      ['Festive Collections', '/products?category=festive-collections'],
-      ['Indian Clothing', '/products?category=indian-clothing'],
-      ['Indian Food', '/products?category=indian-food'],
-      ['Rice', '/products?category=rice'],
+      ['Rakhi', '/products?category=rakhi'],
+      ['Diwali', '/diwali'],
+      ['Mangoes', '/mangoes'],
       ['Favourites', '/wishlist'],
     ],
   },
@@ -29,16 +27,12 @@ const footerGroups = [
 ] as const
 
 export function SiteFooter() {
-  const sellLinks = [
-    ['Become a seller', merchantAppPath('/login?intent=register')],
-    ['Merchant login', merchantAppPath('/login')],
-  ] as const
-
   return (
     <footer className="border-t border-[#d6c4ad] bg-[#f4ede4]">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-4 md:px-8 lg:px-16">
         <div>
           <Link className="inline-block rounded-md bg-[#f4ede4]" href="/">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               alt="BharatMart"
               className="h-12 w-auto bg-[#f4ede4] object-contain"
@@ -48,8 +42,7 @@ export function SiteFooter() {
             />
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-6 text-[#514534]">
-            Bringing the heart of Indian markets to the UK. Quality, authenticity, and community
-            at every step.
+            Bringing authentic Indian festival essentials and seasonal favourites to the UK.
           </p>
           <div className="mt-5 flex gap-2">
             <Button asChild aria-label="Instagram" size="icon" variant="ghost">
@@ -83,13 +76,17 @@ export function SiteFooter() {
         <div>
           <h2 className="font-semibold text-[#7f5700]">Sell on BharatMart</h2>
           <ul className="mt-4 space-y-3">
-            {sellLinks.map(([label, href]) => (
-              <li key={label}>
-                <a className="text-sm text-[#514534] hover:underline" href={href}>
-                  {label}
-                </a>
-              </li>
-            ))}
+            <li>
+              <FooterBecomeSellerLink />
+            </li>
+            <li>
+              <a
+                className="text-sm text-[#514534] hover:underline"
+                href={merchantAppPath('/login')}
+              >
+                Merchant login
+              </a>
+            </li>
           </ul>
         </div>
       </div>

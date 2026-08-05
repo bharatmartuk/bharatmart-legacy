@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Heart, Handshake, Truck, Users } from 'lucide-react'
 import { Button } from '@bharatmart/ui'
 import { MerchantService } from '@bharatmart/services'
-import { merchantAppPath } from '@/lib/app-urls'
+import { BecomeSellerButton } from '@/components/layout/BecomeSellerButton'
 
 export const dynamic = 'force-dynamic'
 
@@ -224,15 +224,9 @@ export default async function AboutPage() {
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
             <Button asChild className="bg-[#e8a317] px-10 py-6 text-base font-semibold text-[#5b3d00] hover:bg-[#ffdeae]">
-              <Link href="/products">Start Shopping</Link>
+              <Link href="/products?category=rakhi">Shop Rakhi</Link>
             </Button>
-            <Button
-              asChild
-              className="border-2 border-[#e8a317] bg-transparent px-10 py-6 text-base font-semibold text-[#e8a317] hover:bg-[#e8a317]/10"
-              variant="outline"
-            >
-              <a href={merchantAppPath('/login')}>Become a Seller</a>
-            </Button>
+            <BecomeSellerButton className="inline-flex h-auto border-2 border-[#e8a317] bg-transparent px-10 py-6 text-base font-semibold text-[#e8a317] shadow-none hover:bg-[#e8a317]/10" />
           </div>
         </div>
       </section>
