@@ -11,8 +11,9 @@ export type MarketingNavItem = {
   children?: MarketingNavChild[]
 }
 
-/** Primary header links (About / Gallery / Contact from legacy Bharatmart). */
+/** Primary header links (legacy Bharatmart nav). */
 export const HEADER_LINKS = [
+  { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
   { label: 'Gallery', href: '/gallery' },
   { label: 'Contact Us', href: '/contact' },

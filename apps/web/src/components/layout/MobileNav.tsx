@@ -135,7 +135,7 @@ export function MobileNav({ isSignedIn }: { isSignedIn: boolean }) {
           <p className="mt-3 px-3 text-xs font-semibold uppercase tracking-wide text-[#837561]">
             Company
           </p>
-          {HEADER_LINKS.map(({ href, label }) => {
+          {HEADER_LINKS.filter((link) => link.href !== '/').map(({ href, label }) => {
             const active = pathname === href
             return (
               <Link
