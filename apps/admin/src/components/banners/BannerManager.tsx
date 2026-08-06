@@ -319,8 +319,15 @@ function BannerFields({
             void uploadFileToCloudinary(file, 'bharatmart/carousel')
               .then((uploaded) => {
                 onChange((current) => ({ ...current, imageUrl: uploaded.url }))
+                onUploadError(null)
               })
-              .catch(() => onUploadError('Image upload failed. Paste an image URL instead.'))
+              .catch((error: unknown) => {
+                const message =
+                  error instanceof Error && error.message
+                    ? error.message
+                    : 'Image upload failed. Paste an image URL instead.'
+                onUploadError(message)
+              })
           }}
           type="file"
           accept="image/*"
