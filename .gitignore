@@ -13,8 +13,14 @@ packages/database/generated
 firebase details
 firebase-details*
 **/serviceAccount*.json
+**/*firebase-adminsdk*.json
+**/bharatmartuk-auth-firebase-adminsdk*.json
+environment
+
 
 # Local media source files — never commit (keep the repo light).
 # Product images / merchant logos are stored in Cloudinary; only URLs live in the database.
 assets/
 stitch_bharatmart_uk_design_system/
+environment
+.vercel
