@@ -52,12 +52,15 @@ export function HeroCarousel({ banners }: { banners: BannerSummary[] }) {
 
   if (banners.length === 0) {
     return (
-      <section className="flex min-h-[360px] items-center bg-[#33302a] pl-[2cm] pr-3 text-white md:min-h-[520px] md:pl-[2.2cm] md:pr-5 lg:pr-6">
+      <section className="flex aspect-[16/9] w-full items-center bg-[#33302a] px-4 text-white sm:px-6 md:aspect-auto md:min-h-[420px] md:px-8 lg:min-h-[520px] lg:px-16">
         <div className="w-full max-w-xl">
-          <h1 className="font-heading text-4xl font-bold md:text-5xl">
+          <h1 className="font-heading text-xl font-bold leading-snug sm:text-2xl md:text-4xl lg:text-5xl">
             The best of India, delivered across the UK
           </h1>
-          <Button asChild className="mt-7 bg-[#e8a317] text-[#281900] hover:bg-[#ffba3e]">
+          <Button
+            asChild
+            className="mt-3 h-9 bg-[#e8a317] px-5 text-sm font-bold text-[#281900] hover:bg-[#ffba3e] md:mt-7 md:h-12 md:px-8"
+          >
             <Link href="/products">Shop now</Link>
           </Button>
         </div>
@@ -68,7 +71,7 @@ export function HeroCarousel({ banners }: { banners: BannerSummary[] }) {
   return (
     <section
       aria-label="Featured collections"
-      className="group/carousel relative h-[420px] overflow-hidden md:h-[520px]"
+      className="group/carousel relative aspect-[16/9] w-full overflow-hidden md:aspect-auto md:h-[420px] lg:h-[520px]"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchEnd={(event) => {
@@ -94,33 +97,33 @@ export function HeroCarousel({ banners }: { banners: BannerSummary[] }) {
           <article className="relative h-full min-w-full" key={banner.id}>
             <Image
               alt=""
-              className="object-cover"
+              className="object-cover object-center"
               fill
               priority={index === 0}
               sizes="100vw"
               src={carouselImageSrc(banner.imageUrl)}
               unoptimized
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-transparent">
-              <div className="flex h-full items-center pl-[2cm] pr-3 md:pl-[2.2cm] md:pr-5 lg:pr-6">
-                <div className="max-w-xl text-white">
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-black/15">
+              <div className="flex h-full items-center px-4 sm:px-6 md:px-8 lg:px-16">
+                <div className="max-w-[85%] text-white sm:max-w-lg md:max-w-xl">
                   {banner.comingSoon ? (
-                    <span className="mb-4 inline-flex rounded-full bg-[#7f5700] px-4 py-1.5 text-sm font-bold uppercase tracking-wider text-white shadow-md">
+                    <span className="mb-1.5 inline-flex rounded-full bg-[#7f5700] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white shadow-md sm:mb-3 sm:px-4 sm:py-1.5 sm:text-sm md:mb-4">
                       Coming soon
                     </span>
                   ) : null}
-                  <h1 className="font-heading text-4xl font-bold leading-tight md:text-5xl">
+                  <h1 className="font-heading text-base font-bold leading-snug sm:text-xl md:text-4xl md:leading-tight lg:text-5xl">
                     {banner.headline}
                   </h1>
                   {banner.subtext ? (
-                    <p className="mt-4 max-w-lg text-base leading-6 text-white/90 md:text-lg">
+                    <p className="mt-1.5 line-clamp-2 max-w-lg text-[11px] leading-snug text-white/90 sm:mt-2 sm:line-clamp-3 sm:text-sm sm:leading-5 md:mt-4 md:line-clamp-none md:text-lg md:leading-6">
                       {banner.subtext}
                     </p>
                   ) : null}
                   {!banner.comingSoon && banner.ctaLink && banner.ctaText ? (
                     <Button
                       asChild
-                      className="mt-7 h-12 bg-[#e8a317] px-8 font-bold text-[#281900] hover:bg-[#ffba3e]"
+                      className="mt-2.5 h-8 bg-[#e8a317] px-4 text-xs font-bold text-[#281900] hover:bg-[#ffba3e] sm:mt-4 sm:h-10 sm:px-6 sm:text-sm md:mt-7 md:h-12 md:px-8 md:text-base"
                     >
                       <Link href={banner.ctaLink}>{banner.ctaText}</Link>
                     </Button>
@@ -136,33 +139,33 @@ export function HeroCarousel({ banners }: { banners: BannerSummary[] }) {
         <>
           <button
             aria-label="Previous banner"
-            className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/45 text-white opacity-100 backdrop-blur-sm transition hover:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e8a317] md:opacity-0 md:group-hover/carousel:opacity-100 md:left-6"
+            className="absolute left-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/45 text-white opacity-100 backdrop-blur-sm transition hover:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e8a317] sm:left-3 sm:h-11 sm:w-11 md:left-6 md:opacity-0 md:group-hover/carousel:opacity-100"
             onClick={() => {
               setIsPaused(true)
               goPrev()
             }}
             type="button"
           >
-            <ChevronLeft className="h-6 w-6" />
+            <ChevronLeft className="h-4 w-4 sm:h-6 sm:w-6" />
           </button>
           <button
             aria-label="Next banner"
-            className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/45 text-white opacity-100 backdrop-blur-sm transition hover:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e8a317] md:opacity-0 md:group-hover/carousel:opacity-100 md:right-6"
+            className="absolute right-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/45 text-white opacity-100 backdrop-blur-sm transition hover:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e8a317] sm:right-3 sm:h-11 sm:w-11 md:right-6 md:opacity-0 md:group-hover/carousel:opacity-100"
             onClick={() => {
               setIsPaused(true)
               goNext()
             }}
             type="button"
           >
-            <ChevronRight className="h-6 w-6" />
+            <ChevronRight className="h-4 w-4 sm:h-6 sm:w-6" />
           </button>
 
-          <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-2">
+          <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-1.5 sm:bottom-4 sm:gap-2 md:bottom-6">
             {banners.map((banner, index) => (
               <button
                 aria-label={`Show banner ${index + 1}`}
-                className={`h-2.5 rounded-full transition-all ${
-                  activeIndex === index ? 'w-8 bg-[#e8a317]' : 'w-2.5 bg-white/60'
+                className={`h-1.5 rounded-full transition-all sm:h-2.5 ${
+                  activeIndex === index ? 'w-5 bg-[#e8a317] sm:w-8' : 'w-1.5 bg-white/60 sm:w-2.5'
                 }`}
                 key={banner.id}
                 onClick={() => {
