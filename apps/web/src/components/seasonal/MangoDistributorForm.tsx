@@ -168,13 +168,13 @@ export function MangoDistributorForm() {
               {selBanganapally ? (
                 <div className="mt-3 space-y-3 text-sm">
                   <QtyRow
-                    label="2 KG · 5–6 mangoes · £13.50"
+                    label="2 KG · 5–6 mangoes · from £13.50*"
                     onDec={() => adjust('qty_banganapally_2kg', -1)}
                     onInc={() => adjust('qty_banganapally_2kg', 1)}
                     value={qty.qty_banganapally_2kg}
                   />
                   <QtyRow
-                    label="3 KG · 7–8 mangoes · £18.50"
+                    label="3 KG · 7–8 mangoes · from £18.50*"
                     onDec={() => adjust('qty_banganapally_3kg', -1)}
                     onInc={() => adjust('qty_banganapally_3kg', 1)}
                     value={qty.qty_banganapally_3kg}
@@ -195,13 +195,13 @@ export function MangoDistributorForm() {
               {selRatnagiri ? (
                 <div className="mt-3 space-y-3 text-sm">
                   <QtyRow
-                    label="2 KG · 5–6 mangoes · £13.50"
+                    label="2 KG · 5–6 mangoes · from £13.50*"
                     onDec={() => adjust('qty_ratnagiri_2kg', -1)}
                     onInc={() => adjust('qty_ratnagiri_2kg', 1)}
                     value={qty.qty_ratnagiri_2kg}
                   />
                   <QtyRow
-                    label="3 KG · 7–8 mangoes · £18.50"
+                    label="3 KG · 7–8 mangoes · from £18.50*"
                     onDec={() => adjust('qty_ratnagiri_3kg', -1)}
                     onInc={() => adjust('qty_ratnagiri_3kg', 1)}
                     value={qty.qty_ratnagiri_3kg}
@@ -217,6 +217,10 @@ export function MangoDistributorForm() {
             {totalBoxes > 0 && totalBoxes < 100 ? (
               <span className="ml-2 text-[#B71C1C]">(need {100 - totalBoxes} more)</span>
             ) : null}
+            <p className="mt-1 text-xs text-[#5a6b5a]">
+              *Guide prices only — final rates confirmed on acceptance and may vary with market
+              conditions.
+            </p>
           </div>
 
           <Button

@@ -18,8 +18,9 @@ const footerGroups = [
   {
     title: 'Company',
     links: [
-      ['Our story', '/about'],
-      ['Contact us', '/contact'],
+      ['About Us', '/about'],
+      ['Gallery', '/gallery'],
+      ['Contact Us', '/contact'],
       ['Privacy policy', '/privacy-policy'],
       ['Terms of service', '/terms'],
     ],
@@ -90,8 +91,12 @@ export function SiteFooter() {
         </div>
       </div>
       <Separator className="bg-[#d6c4ad]" />
-      <div className="mx-auto max-w-7xl px-4 py-6 text-center text-xs text-[#837561] md:px-8 lg:px-16">
-        © {new Date().getFullYear()} BharatMart UK. All rights reserved.
+      <div className="mx-auto max-w-7xl space-y-1 px-4 py-6 text-center text-xs text-[#837561] md:px-8 lg:px-16">
+        <p>© {new Date().getFullYear()} BharatMart UK. All rights reserved.</p>
+        <p>
+          <strong className="font-semibold text-[#514534]">Bharat Mart Limited</strong>, Company
+          number: 16582568
+        </p>
       </div>
     </footer>
   )

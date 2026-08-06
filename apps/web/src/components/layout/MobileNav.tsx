@@ -13,7 +13,7 @@ import {
   SheetTrigger,
 } from '@bharatmart/ui'
 import { cn } from '@bharatmart/utils'
-import { MARKETING_NAV } from '@/lib/marketing-nav'
+import { HEADER_LINKS, MARKETING_NAV } from '@/lib/marketing-nav'
 import { BecomeSellerButton } from '@/components/layout/BecomeSellerButton'
 
 const baseLinks = [
@@ -130,6 +130,28 @@ export function MobileNav({ isSignedIn }: { isSignedIn: boolean }) {
                 {item.label}
               </Link>
             ) : null
+          })}
+
+          <p className="mt-3 px-3 text-xs font-semibold uppercase tracking-wide text-[#837561]">
+            Company
+          </p>
+          {HEADER_LINKS.map(({ href, label }) => {
+            const active = pathname === href
+            return (
+              <Link
+                className={cn(
+                  'rounded-lg px-3 py-3 text-sm font-medium transition',
+                  active
+                    ? 'bg-[#f4ede4] text-[#7f5700]'
+                    : 'text-[#514534] hover:bg-[#f4ede4] hover:text-[#7f5700]',
+                )}
+                href={href}
+                key={href}
+                onClick={() => setOpen(false)}
+              >
+                {label}
+              </Link>
+            )
           })}
 
           <div className="my-3 border-t border-[#d6c4ad]" />

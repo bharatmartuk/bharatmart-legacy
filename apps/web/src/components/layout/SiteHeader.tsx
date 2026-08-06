@@ -3,6 +3,7 @@ import { AuthService } from '@bharatmart/services'
 import { CartLink } from '@/components/cart/CartLink'
 import { CategoriesNav } from '@/components/layout/CategoriesNav'
 import { HeaderAuthNav } from '@/components/layout/HeaderAuthNav'
+import { HeaderLinks } from '@/components/layout/HeaderLinks'
 import { MobileNav } from '@/components/layout/MobileNav'
 import { WishlistLink } from '@/components/wishlist/WishlistLink'
 import { LocationChip } from '@/components/location/LocationChip'
@@ -29,6 +30,7 @@ export async function SiteHeader({ location }: { location?: CustomerLocation }) 
             />
           </Link>
           <CategoriesNav />
+          <HeaderLinks />
           {location ? <LocationChip location={location} /> : null}
         </div>
 

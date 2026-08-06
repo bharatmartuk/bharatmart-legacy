@@ -42,7 +42,7 @@ const CAROUSEL_SLIDES = [
   },
   {
     id: 'carousel_diwali_legacy',
-    imageUrl: '/seasonal/diwali/diwali-pooja-kit-new.jpg',
+    imageUrl: '/seasonal/diwali/banner_2.png',
     headline: 'Diwali Collection — Festival Essentials',
     subtext: 'Diyas, pooja kits, rangoli and festive décor curated for UK celebrations.',
     ctaText: 'Explore Diwali',
@@ -52,7 +52,7 @@ const CAROUSEL_SLIDES = [
   },
   {
     id: 'carousel_mangoes_legacy',
-    imageUrl: '/seasonal/mangoes/banner_01_mango.jpeg',
+    imageUrl: '/seasonal/mangoes/bharatmart_booking_form_mangoes.jpeg',
     headline: 'Indian Mangoes — Premium A-Grade',
     subtext: 'Banganapally and Alphonso mangoes. Pre-order for personal use or become a 2027 distributor.',
     ctaText: 'Book Mangoes',

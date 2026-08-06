@@ -11,6 +11,13 @@ export type MarketingNavItem = {
   children?: MarketingNavChild[]
 }
 
+/** Primary header links (About / Gallery / Contact from legacy Bharatmart). */
+export const HEADER_LINKS = [
+  { label: 'About Us', href: '/about' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Contact Us', href: '/contact' },
+] as const
+
 /** Static marketing category tree for the seasonal storefront. */
 export const MARKETING_NAV: MarketingNavItem[] = [
   {
@@ -44,14 +51,14 @@ export const SEASONAL_CTAS = [
     title: 'Diwali',
     description: 'Diyas, pooja kits, rangoli and festive décor.',
     href: '/diwali',
-    image: '/seasonal/diwali/diwali-pooja-kit-new.jpg',
+    image: '/seasonal/diwali/banner_2.png',
     accent: '#B3472C',
   },
   {
     title: 'Mangoes',
-    description: 'Premium A-grade Indian mangoes — pre-order now.',
+    description: '2026 sold out for customers — 2027 distributors welcome.',
     href: '/mangoes',
-    image: '/seasonal/mangoes/bharatmart_mangoes.jpeg',
+    image: '/seasonal/mangoes/bharatmart_booking_form_mangoes.jpeg',
     accent: '#F9A825',
   },
 ] as const
