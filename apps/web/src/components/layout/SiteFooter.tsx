@@ -32,7 +32,6 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-4 md:px-8 lg:px-16">
         <div>
           <Link className="inline-block rounded-md bg-[#f4ede4]" href="/">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               alt="BharatMart"
               className="h-12 w-auto bg-[#f4ede4] object-contain"

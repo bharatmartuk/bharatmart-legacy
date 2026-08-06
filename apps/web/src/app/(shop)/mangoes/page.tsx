@@ -49,7 +49,6 @@ export default function MangoesPage() {
               (minimum 100 boxes).
             </p>
           </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt="Premium Indian mangoes"
             className="w-full rounded-2xl border border-[#e8d9c8] object-cover shadow-sm"
@@ -60,13 +59,11 @@ export default function MangoesPage() {
 
       <section className="mx-auto max-w-7xl px-4 py-10 md:px-8 lg:px-16">
         <div className="grid gap-4 sm:grid-cols-2">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt="Mango banner"
             className="h-48 w-full rounded-xl object-cover md:h-56"
             src="/seasonal/mangoes/banner_01_mango.jpeg"
           />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt="Mango banner"
             className="h-48 w-full rounded-xl object-cover md:h-56"
@@ -81,7 +78,6 @@ export default function MangoesPage() {
       >
         <div className="mx-auto max-w-3xl px-4 md:px-8">
           <div className="mb-6 overflow-hidden rounded-2xl border border-[#e8d9c8]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               alt="Mango booking"
               className="max-h-56 w-full object-cover"

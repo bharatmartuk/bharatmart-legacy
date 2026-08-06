@@ -20,7 +20,6 @@ export async function SiteHeader({ location }: { location?: CustomerLocation }) 
         <div className="flex shrink-0 items-center gap-2 md:gap-3">
           <MobileNav isSignedIn={Boolean(user)} />
           <Link className="flex shrink-0 items-center justify-center bg-transparent" href="/">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               alt="BharatMart"
               src="/bharatmart-logo.png"

@@ -23,7 +23,6 @@ export function SeasonalCtaGrid() {
             key={item.title}
           >
             <div className="aspect-[4/3] overflow-hidden bg-[#f4ede4]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 alt={item.title}
                 className="h-full w-full object-cover transition duration-300 group-hover:scale-105"

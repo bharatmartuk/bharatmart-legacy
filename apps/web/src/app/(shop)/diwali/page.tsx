@@ -79,7 +79,6 @@ export default function DiwaliPage() {
               className="overflow-hidden rounded-2xl border border-[#e8d9c8] bg-[#fffaf4]"
               key={kit.title}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt={kit.title} className="aspect-square w-full object-cover" src={kit.image} />
               <div className="p-4">
                 <h3 className="font-semibold text-[#E65100]">{kit.title}</h3>
