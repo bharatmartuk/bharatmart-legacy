@@ -6,11 +6,16 @@ import { TrustStrip } from '@/components/home/TrustStrip'
 export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {
-  const banners = await BannerService.getActiveBanners()
+  let banners: Awaited<ReturnType<typeof BannerService.getActiveBanners>> = []
+  try {
+    banners = await BannerService.getActiveBanners()
+  } catch (error) {
+    console.error('[home] Failed to load banners', error)
+  }
 
   return (
     <main>
-      <HeroCarousel banners={banners} />
+      {banners.length > 0 ? <HeroCarousel banners={banners} /> : null}
       <SeasonalCtaGrid />
       <TrustStrip />
     </main>
