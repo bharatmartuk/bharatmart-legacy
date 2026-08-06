@@ -313,9 +313,11 @@ function BannerFields({
         <Input
           disabled={pending}
           onChange={(event) => {
-            const file = event.target.files?.[0]
+            const input = event.target
+            const file = input.files?.[0]
             if (!file) return
             onUploadError(null)
+            onChange((current) => ({ ...current, imageUrl: '' }))
             void uploadFileToCloudinary(file, 'bharatmart/carousel')
               .then((uploaded) => {
                 onChange((current) => ({ ...current, imageUrl: uploaded.url }))
@@ -327,11 +329,16 @@ function BannerFields({
                     ? error.message
                     : 'Image upload failed. Paste an image URL instead.'
                 onUploadError(message)
+                input.value = ''
               })
           }}
           type="file"
           accept="image/*"
         />
+        <p className="text-xs text-[#837561]">
+          After choosing a file, wait until the Image URL field fills and a preview appears — then
+          click Add to carousel.
+        </p>
         {form.imageUrl ? (
           <div className="relative mt-2 h-32 w-full max-w-md overflow-hidden rounded-md bg-[#f4ede4]">
             <Image
