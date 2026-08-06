@@ -90,7 +90,14 @@ async function uploadBuffer(buffer: Buffer, publicId: string) {
 
 /** Resolve a merchant logo URL in Cloudinary for seeding (idempotent per store slug). */
 export async function resolveSeedMerchantLogoUrl(storeSlug: string, repoRoot = REPO_ROOT) {
-  const cloudName = requireCloudinary()
+  const cloudName = process.env.CLOUDINARY_CLOUD_NAME
+  const apiKey = process.env.CLOUDINARY_API_KEY
+  const apiSecret = process.env.CLOUDINARY_API_SECRET
+  if (!cloudName || !apiKey || !apiSecret) {
+    return null
+  }
+
+  requireCloudinary()
   const publicId = logoPublicId(storeSlug)
 
   if (await resourceExists(publicId)) {

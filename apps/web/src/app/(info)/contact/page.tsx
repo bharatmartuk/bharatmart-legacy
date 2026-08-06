@@ -1,4 +1,4 @@
-import { ArrowRight, Clock, Instagram, Mail, MessageCircle } from 'lucide-react'
+import { ArrowRight, Clock, Instagram, Mail, Store } from 'lucide-react'
 import {
   Accordion,
   AccordionContent,
@@ -13,6 +13,7 @@ import {
   getWhatsAppSupportUrl,
 } from '@/lib/contact'
 import { FooterBecomeSellerLink } from '@/components/layout/FooterBecomeSellerLink'
+import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon'
 
 export const metadata = {
   title: 'Contact Us',
@@ -60,18 +61,18 @@ export default function ContactPage() {
 
         <div className="space-y-6 lg:col-span-5">
           <a
-            className="group flex items-center justify-between rounded-xl bg-[#80bf85] p-8 text-[#0e4e21] transition-transform hover:-translate-y-1"
+            className="group flex items-center justify-between rounded-xl bg-[#25D366] p-8 text-white transition-transform hover:-translate-y-1"
             href={whatsappUrl}
             rel="noreferrer"
             target="_blank"
           >
             <div className="flex items-center gap-6">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#2e6a39] text-white">
-                <MessageCircle aria-hidden className="h-7 w-7" />
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#25D366]">
+                <WhatsAppIcon className="h-8 w-8" />
               </div>
               <div>
                 <h2 className="font-heading text-xl font-semibold">Chat on WhatsApp</h2>
-                <p className="text-sm opacity-90">Instant support for quick questions</p>
+                <p className="text-sm text-white/90">Instant support for quick questions</p>
               </div>
             </div>
             <ArrowRight aria-hidden className="h-6 w-6 transition-transform group-hover:translate-x-1" />
@@ -115,7 +116,19 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="h-40 overflow-hidden rounded-xl bg-[linear-gradient(135deg,#a83635_0%,#7f5700_50%,#e8a317_100%)] shadow-sm" />
+          <div className="rounded-xl border border-[#d6c4ad] bg-[#fffaf4] p-8 shadow-sm">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#f4ede4] text-[#7f5700]">
+              <Store aria-hidden className="h-6 w-6" />
+            </div>
+            <h2 className="font-heading text-xl font-semibold text-[#1e1b16]">Sell with BharatMart</h2>
+            <p className="mt-2 text-sm leading-6 text-[#514534]">
+              Reach UK customers looking for authentic Indian products. Share your store details and our
+              team will guide you through onboarding.
+            </p>
+            <p className="mt-5">
+              <FooterBecomeSellerLink className="inline-flex items-center rounded-lg bg-[#7f5700] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#6a4900] hover:no-underline" />
+            </p>
+          </div>
         </div>
       </div>
 

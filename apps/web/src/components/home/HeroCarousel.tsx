@@ -71,7 +71,7 @@ export function HeroCarousel({ banners }: { banners: BannerSummary[] }) {
   return (
     <section
       aria-label="Featured collections"
-      className="group/carousel relative aspect-[16/9] w-full overflow-hidden md:aspect-auto md:h-[420px] lg:h-[520px]"
+      className="group/carousel relative aspect-[5/4] w-full overflow-hidden sm:aspect-[16/9] md:aspect-auto md:h-[420px] lg:h-[520px]"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchEnd={(event) => {

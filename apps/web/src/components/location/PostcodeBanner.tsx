@@ -32,25 +32,28 @@ export function PostcodeBanner({ location }: { location: CustomerLocation }) {
 
   return (
     <div className="border-b border-[#e8d9c8] bg-[#f9f3ea]">
-      <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-2.5 sm:flex-row sm:items-center sm:justify-between md:px-8 lg:px-16">
-        <div className="flex items-center gap-2 text-sm text-[#514534]">
-          <MapPin className="h-4 w-4 shrink-0 text-[#7f5700]" />
-          <span className="font-medium text-[#1e1b16]">Your postcode</span>
-        </div>
+      <div className="mx-auto flex max-w-7xl items-center gap-2 px-3 py-1.5 md:gap-3 md:px-8 md:py-2 lg:px-16">
+        <MapPin
+          aria-hidden
+          className="h-3.5 w-3.5 shrink-0 text-[#7f5700] md:h-4 md:w-4"
+        />
+        <span className="hidden shrink-0 text-sm font-medium text-[#1e1b16] sm:inline">
+          Your postcode
+        </span>
 
         {location.source === 'account' ? (
           <Button
             asChild
-            className="shrink-0 bg-[#a83635] text-white hover:bg-[#8f2e2d]"
+            className="ml-auto h-8 shrink-0 bg-[#a83635] px-3 text-xs text-white hover:bg-[#8f2e2d] md:h-9 md:text-sm"
             size="sm"
           >
-            <Link href="/account">Add delivery address</Link>
+            <Link href="/account">Add address</Link>
           </Button>
         ) : (
-          <div className="flex w-full flex-col gap-2 sm:max-w-md sm:flex-row sm:items-center">
+          <div className="flex min-w-0 flex-1 items-center gap-1.5 sm:max-w-md sm:gap-2">
             <Input
               aria-label="UK postcode"
-              className="uppercase sm:max-w-[11rem]"
+              className="h-8 min-w-0 flex-1 uppercase text-sm md:h-9 md:max-w-[11rem] md:flex-none"
               disabled={pending}
               onChange={(event) => setPostcode(event.target.value)}
               onKeyDown={(event) => {
@@ -62,37 +65,41 @@ export function PostcodeBanner({ location }: { location: CustomerLocation }) {
               placeholder="E14 8PX"
               value={postcode}
             />
-            <div className="flex gap-2">
+            <Button
+              className="h-8 shrink-0 bg-[#a83635] px-3 text-xs text-white hover:bg-[#8f2e2d] md:h-9 md:px-4 md:text-sm"
+              disabled={pending}
+              onClick={save}
+              size="sm"
+              type="button"
+            >
+              Save
+            </Button>
+            {location.status === 'unknown' ? (
               <Button
-                className="bg-[#a83635] text-white hover:bg-[#8f2e2d]"
+                className="h-8 shrink-0 px-2 text-xs text-[#514534] md:h-9 md:px-3 md:text-sm"
                 disabled={pending}
-                onClick={save}
+                onClick={() =>
+                  startTransition(async () => {
+                    await skipDeliveryPostcodeAction()
+                    toast.message('Browsing all areas')
+                  })
+                }
                 size="sm"
                 type="button"
+                variant="ghost"
               >
-                Save
+                <span className="sm:hidden">Skip</span>
+                <span className="hidden sm:inline">Not now</span>
               </Button>
-              {location.status === 'unknown' ? (
-                <Button
-                  disabled={pending}
-                  onClick={() =>
-                    startTransition(async () => {
-                      await skipDeliveryPostcodeAction()
-                      toast.message('Browsing all areas')
-                    })
-                  }
-                  size="sm"
-                  type="button"
-                  variant="ghost"
-                >
-                  Not now
-                </Button>
-              ) : null}
-            </div>
-            {error ? <p className="text-xs text-[#a83635] sm:col-span-2">{error}</p> : null}
+            ) : null}
           </div>
         )}
       </div>
+      {error ? (
+        <p className="mx-auto max-w-7xl px-3 pb-1.5 text-xs text-[#a83635] md:px-8 lg:px-16">
+          {error}
+        </p>
+      ) : null}
     </div>
   )
 }

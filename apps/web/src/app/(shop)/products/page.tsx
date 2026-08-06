@@ -72,6 +72,8 @@ export default async function ProductsPage({
     filters.category ? CategoryService.getBySlug(filters.category) : Promise.resolve(null),
   ])
 
+  const liveCategories = categories.filter((category) => !category.comingSoon)
+
   const plainParams: Record<string, string | undefined> = {
     q: filters.q,
     category: filters.category,
@@ -85,24 +87,26 @@ export default async function ProductsPage({
   }
 
   const heading = activeCategory
-    ? `${result.total} products in '${activeCategory.name}'`
+    ? activeCategory.name
     : filters.q
-      ? `${result.total} results for '${filters.q}'`
-      : `${result.total} products`
+      ? `Results for “${filters.q}”`
+      : 'All products'
 
+  const itemLabel = result.total === 1 ? '1 item' : `${result.total} items`
   const deliveryHint =
     filters.deliveryArea && location.status === 'set' && location.postcode
       ? `Showing merchants that deliver to ${location.postcode}.`
       : filters.deliveryArea
         ? `Filtered to delivery area ${filters.deliveryArea}.`
         : 'Authentic Indian products from verified UK merchants.'
+  const subheading = `${itemLabel} · ${deliveryHint}`
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-6 md:px-8 md:py-8 lg:px-16">
       <div className="grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start lg:gap-8">
         <aside className="hidden lg:block lg:sticky lg:top-20 lg:z-20 lg:self-start lg:max-h-[calc(100vh-5.5rem)] lg:overflow-y-auto lg:pb-4">
           <Suspense fallback={<div className="h-96 animate-pulse rounded-xl bg-[#f4ede4]" />}>
-            <ProductFilters categories={categories} merchants={merchants} />
+            <ProductFilters categories={liveCategories} merchants={merchants} />
           </Suspense>
         </aside>
 
@@ -136,12 +140,12 @@ export default async function ProductsPage({
 
           <div className="mb-4">
             <h1 className="font-heading text-3xl font-semibold text-[#1e1b16]">{heading}</h1>
-            <p className="mt-1 text-sm text-[#514534]">{deliveryHint}</p>
+            <p className="mt-1 text-sm text-[#514534]">{subheading}</p>
           </div>
 
           <div className="sticky top-16 z-30 -mx-4 mb-4 border-b border-[#e8d9c8] bg-[#fff8f0] px-4 py-3 md:top-20 md:mx-0 md:px-0">
             <Suspense fallback={null}>
-              <ProductsToolbar categories={categories} merchants={merchants} />
+              <ProductsToolbar categories={liveCategories} merchants={merchants} />
             </Suspense>
           </div>
 

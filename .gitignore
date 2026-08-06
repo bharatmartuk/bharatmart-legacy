@@ -21,6 +21,8 @@ environment
 # Local media source files — never commit (keep the repo light).
 # Product images / merchant logos are stored in Cloudinary; only URLs live in the database.
 assets/
+Rakhis/
+apps/web/public/seed/
 stitch_bharatmart_uk_design_system/
 environment
 .vercel

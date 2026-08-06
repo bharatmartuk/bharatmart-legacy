@@ -11,7 +11,11 @@ import {
   ProductStatus,
   UserRole,
 } from '../generated/client'
-import { resolveSeedProductImageUrl } from './lib/seed-cloudinary'
+import { resolveSeedProductGalleryUrls, resolveSeedProductImageUrl } from './lib/seed-cloudinary'
+import {
+  getOldPlaceholderRakhiSlugs,
+  loadRakhiSeedCatalog,
+} from './lib/seed-rakhi-catalog'
 import { resolveSeedMerchantLogoUrl } from './lib/seed-merchant-logos'
 import { resolveSeedCarouselUrl } from './lib/seed-carousel'
 
@@ -34,6 +38,8 @@ type SeedProduct = {
   stockQuantity: number
   sku: string
   isFeatured?: boolean
+  /** When set, all gallery images are uploaded/seeded (rakhi catalog). */
+  localImagePaths?: string[]
 }
 
 const categories = [
@@ -224,7 +230,7 @@ const merchants = [
   },
 ] as const
 
-const products: SeedProduct[] = [
+const baseProducts: SeedProduct[] = [
   // Pickles - Amma's Andhra Pickle House
   {
     merchantSlug: 'ammas-andhra-pickle-house',
@@ -539,53 +545,7 @@ const products: SeedProduct[] = [
     isFeatured: true,
   },
 
-  // Rakhi
-  {
-    merchantSlug: 'festival-lights-emporium',
-    categorySlug: 'rakhi',
-    name: 'Premium Designer Rakhi Set',
-    slug: 'premium-designer-rakhi-set',
-    description:
-      'Elegant designer rakhi set with matching roli chawal — ready for Raksha Bandhan gifting across the UK.',
-    priceInPence: 1299,
-    stockQuantity: 60,
-    sku: 'FLE-RKH-001',
-    isFeatured: true,
-  },
-  {
-    merchantSlug: 'festival-lights-emporium',
-    categorySlug: 'rakhi',
-    name: 'Traditional Thread Rakhi Pack (Set of 3)',
-    slug: 'traditional-thread-rakhi-pack',
-    description:
-      'Classic hand-tied thread rakhis in festive colours — a timeless choice for siblings near and far.',
-    priceInPence: 799,
-    stockQuantity: 80,
-    sku: 'FLE-RKH-002',
-    isFeatured: true,
-  },
-  {
-    merchantSlug: 'festival-lights-emporium',
-    categorySlug: 'rakhi',
-    name: 'Kids Special Cartoon Rakhi',
-    slug: 'kids-special-cartoon-rakhi',
-    description: 'Fun kids rakhi with soft motifs — perfect for little brothers and sisters.',
-    priceInPence: 599,
-    stockQuantity: 70,
-    sku: 'FLE-RKH-003',
-  },
-  {
-    merchantSlug: 'festival-lights-emporium',
-    categorySlug: 'rakhi',
-    name: 'Sibling Gift Hamper with Rakhi',
-    slug: 'sibling-gift-hamper-with-rakhi',
-    description:
-      'Thoughtful sibling gift pack with premium rakhi, sweets and a keepsake card for Raksha Bandhan.',
-    priceInPence: 2499,
-    stockQuantity: 35,
-    sku: 'FLE-RKH-004',
-    isFeatured: true,
-  },
+  // Rakhi products are loaded from Rakhis/ + prices.txt via loadRakhiSeedCatalog().
 
   // Indian Clothing
   {
@@ -742,6 +702,12 @@ const products: SeedProduct[] = [
     sku: 'GLO-MLT-003',
   },
 ]
+
+function getSeedProducts(): SeedProduct[] {
+  const rakhiProducts = loadRakhiSeedCatalog(REPO_ROOT)
+  console.log(`Loaded ${rakhiProducts.length} rakhi products from Rakhis/ + prices.txt`)
+  return [...baseProducts, ...rakhiProducts]
+}
 
 async function removePreviousTemporaryAuthSeed() {
   await prisma.merchant.deleteMany({
@@ -979,10 +945,31 @@ async function seedUsersAndMerchants(passwordHash: string) {
   return { merchantIds, customers }
 }
 
+async function archiveOldPlaceholderRakhis() {
+  const slugs = getOldPlaceholderRakhiSlugs()
+  for (const [index, slug] of slugs.entries()) {
+    const existing = await prisma.product.findUnique({ where: { slug } })
+    if (!existing) continue
+    await prisma.product.update({
+      where: { slug },
+      data: {
+        status: ProductStatus.ARCHIVED,
+        isFeatured: false,
+        // Free FLE-RKH-00x SKUs for the real Rakhis catalog.
+        sku: `FLE-RKH-OLD-${String(index + 1).padStart(3, '0')}`,
+      },
+    })
+    console.log(`Archived placeholder rakhi: ${slug}`)
+  }
+}
+
 async function seedProducts(
   categoryIds: Map<string, string>,
   merchantIds: Map<string, string>,
 ) {
+  await archiveOldPlaceholderRakhis()
+
+  const products = getSeedProducts()
   const productRecords = new Map<
     string,
     { id: string; name: string; priceInPence: number; merchantId: string }
@@ -1030,28 +1017,42 @@ async function seedProducts(
     })
 
     // All product images live in Cloudinary - URLs only in the database.
-    const imageUrl = await resolveSeedProductImageUrl(product.slug, REPO_ROOT)
+    const imageUrls =
+      product.localImagePaths && product.localImagePaths.length > 0
+        ? await resolveSeedProductGalleryUrls(product.slug, product.localImagePaths, {
+            folderName: product.name,
+            forceUpload: true,
+          })
+        : [await resolveSeedProductImageUrl(product.slug, REPO_ROOT)]
 
-    await prisma.productImage.upsert({
-      where: { id: `seed_image_${product.slug}_1` },
-      update: {
-        productId: record.id,
-        url: imageUrl,
-        sortOrder: 1,
-      },
-      create: {
-        id: `seed_image_${product.slug}_1`,
-        productId: record.id,
-        url: imageUrl,
-        sortOrder: 1,
-      },
-    })
+    const seededImageIds: string[] = []
+    for (let index = 0; index < imageUrls.length; index += 1) {
+      const sortOrder = index + 1
+      const imageId = `seed_image_${product.slug}_${sortOrder}`
+      seededImageIds.push(imageId)
+      const imageUrl = imageUrls[index]!
 
-    // Drop any leftover placeholder images from older seeds.
+      await prisma.productImage.upsert({
+        where: { id: imageId },
+        update: {
+          productId: record.id,
+          url: imageUrl,
+          sortOrder,
+        },
+        create: {
+          id: imageId,
+          productId: record.id,
+          url: imageUrl,
+          sortOrder,
+        },
+      })
+    }
+
+    // Drop leftover images from older seeds (e.g. single-image placeholders).
     await prisma.productImage.deleteMany({
       where: {
         productId: record.id,
-        id: { not: `seed_image_${product.slug}_1` },
+        id: { notIn: seededImageIds },
       },
     })
   }

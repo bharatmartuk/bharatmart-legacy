@@ -16,6 +16,8 @@
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
+    "db:seed-rakhis": "tsx prisma/seed-rakhis.ts",
+    "db:organize-rakhi-folders": "tsx prisma/organize-rakhi-folders.ts",
     "db:migrate-product-images": "tsx prisma/migrate-product-images-to-cloudinary.ts",
     "db:replace-new-product-images": "tsx prisma/replace-new-product-images.ts",
     "db:sync-category-marketplace": "tsx prisma/sync-category-marketplace.ts",

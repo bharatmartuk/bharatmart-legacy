@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { cn } from '@bharatmart/utils'
 import { FavoriteButton } from '@/components/product/FavoriteButton'
 import type { WishlistItem } from '@/lib/store/wishlist-store'
@@ -14,7 +14,17 @@ interface ProductImageGalleryProps {
 
 export function ProductImageGallery({ images, productName, favorite }: ProductImageGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0)
+  const touchStartX = useRef<number | null>(null)
   const active = images[activeIndex] ?? images[0]
+
+  const goTo = useCallback(
+    (index: number) => {
+      if (images.length === 0) return
+      const next = ((index % images.length) + images.length) % images.length
+      setActiveIndex(next)
+    },
+    [images.length],
+  )
 
   if (!active) {
     return (
@@ -25,8 +35,23 @@ export function ProductImageGallery({ images, productName, favorite }: ProductIm
   }
 
   return (
-    <div className="space-y-3">
-      <div className="relative aspect-square overflow-hidden rounded-xl bg-[#f9f3ea]">
+    <div className="space-y-2.5">
+      <div
+        className="relative aspect-square touch-pan-y overflow-hidden rounded-xl bg-[#f9f3ea]"
+        onTouchEnd={(event) => {
+          const start = touchStartX.current
+          touchStartX.current = null
+          if (start == null || images.length < 2) return
+          const endX = event.changedTouches[0]?.clientX ?? start
+          const delta = endX - start
+          if (Math.abs(delta) < 40) return
+          if (delta < 0) goTo(activeIndex + 1)
+          else goTo(activeIndex - 1)
+        }}
+        onTouchStart={(event) => {
+          touchStartX.current = event.touches[0]?.clientX ?? null
+        }}
+      >
         <Image
           alt={productName}
           className="object-cover"
@@ -37,23 +62,38 @@ export function ProductImageGallery({ images, productName, favorite }: ProductIm
           unoptimized
         />
         {favorite ? (
-          <FavoriteButton className="absolute right-4 top-4 z-10" item={favorite} size="lg" />
+          <FavoriteButton className="absolute right-3 top-3 z-10" item={favorite} size="lg" />
+        ) : null}
+        {images.length > 1 ? (
+          <div className="pointer-events-none absolute inset-x-0 bottom-3 flex justify-center gap-1.5">
+            {images.map((image, index) => (
+              <span
+                className={cn(
+                  'h-1.5 w-1.5 rounded-full transition',
+                  activeIndex === index ? 'bg-white' : 'bg-white/50',
+                )}
+                key={image.id}
+              />
+            ))}
+          </div>
         ) : null}
       </div>
+
       {images.length > 1 ? (
-        <div className="grid grid-cols-4 gap-2 sm:grid-cols-5">
+        <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-0.5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           {images.map((image, index) => (
             <button
+              aria-current={activeIndex === index}
               aria-label={`Show image ${index + 1}`}
               className={cn(
-                'relative aspect-square overflow-hidden rounded-lg border-2',
+                'relative h-14 w-14 shrink-0 overflow-hidden rounded-md border-2 sm:h-16 sm:w-16',
                 activeIndex === index ? 'border-[#7f5700]' : 'border-transparent',
               )}
               key={image.id}
               onClick={() => setActiveIndex(index)}
               type="button"
             >
-              <Image alt="" className="object-cover" fill sizes="96px" src={image.url} unoptimized />
+              <Image alt="" className="object-cover" fill sizes="64px" src={image.url} unoptimized />
             </button>
           ))}
         </div>

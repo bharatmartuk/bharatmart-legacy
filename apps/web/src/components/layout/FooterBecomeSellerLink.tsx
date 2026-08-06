@@ -1,15 +1,16 @@
 'use client'
 
 import { useState } from 'react'
+import { cn } from '@bharatmart/utils'
 import { BecomeSellerDialog } from '@/components/layout/BecomeSellerDialog'
 
-export function FooterBecomeSellerLink() {
+export function FooterBecomeSellerLink({ className }: { className?: string }) {
   const [open, setOpen] = useState(false)
 
   return (
     <>
       <button
-        className="text-sm text-[#514534] hover:underline"
+        className={cn('text-sm text-[#514534] hover:underline', className)}
         onClick={() => setOpen(true)}
         type="button"
       >
