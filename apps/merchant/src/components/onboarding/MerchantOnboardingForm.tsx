@@ -168,7 +168,7 @@ export function MerchantOnboardingForm() {
   }
 
   async function onSubmit(data: MerchantOnboardingInput) {
-    // Only the Review step may submit — never skip the preview.
+    // Only the Review step may submit - never skip the preview.
     if (step !== steps.length - 1) {
       await goNext()
       return
@@ -502,7 +502,7 @@ export function MerchantOnboardingForm() {
                     <div className="flex justify-between gap-4">
                       <dt>Company number</dt>
                       <dd className="text-right font-medium text-[#1e1b16]">
-                        {values.registrationNumber || '—'}
+                        {values.registrationNumber || '-'}
                       </dd>
                     </div>
                     <div className="flex justify-between gap-4">

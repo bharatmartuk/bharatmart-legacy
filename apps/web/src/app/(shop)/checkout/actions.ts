@@ -114,7 +114,7 @@ export type PlaceGuestOrderInput = {
 }
 
 /**
- * Guest checkout — no session required. Creates a guest address then places the order.
+ * Guest checkout - no session required. Creates a guest address then places the order.
  */
 export async function placeGuestOrder(input: PlaceGuestOrderInput): Promise<PlaceOrderState> {
   const parsed = guestCheckoutSchema.safeParse({

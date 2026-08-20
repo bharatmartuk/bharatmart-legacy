@@ -9,6 +9,6 @@
 | `product_favourites.png` | Later | Product page favourites CTA |
 | `postcode_gate.png` | Later | Postcode modal / location UX |
 | `customer_journey.png` | Later | Optional journey collage |
-| `certificate2.png` | After completion | Internship still in progress — space reserved in LaTeX |
+| `certificate2.png` | After completion | Internship still in progress - space reserved in LaTeX |
 
 Missing images show a bordered placeholder box in the PDF.

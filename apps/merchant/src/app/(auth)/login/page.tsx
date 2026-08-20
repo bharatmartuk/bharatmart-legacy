@@ -18,7 +18,7 @@ export default async function LoginPage() {
     redirect('/verification-pending')
   }
 
-  // CUSTOMER, or MERCHANT role without a store yet — stay on login.
+  // CUSTOMER, or MERCHANT role without a store yet - stay on login.
   // Registration opens only when they click Continue / Register.
   const isIncompleteSeller = Boolean(user && !merchant)
 

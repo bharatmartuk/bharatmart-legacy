@@ -32,7 +32,7 @@ async function notifyOrderParties(order: {
  * Card orders are normally finalized by the Stripe webhook. When that never
  * lands (no endpoint configured, local dev, delivery failure) the order stays
  * PENDING with no MerchantOrders and is untrackable, so we ask Stripe directly
- * and finalize here. Safe to call repeatedly — finalizeOrder is idempotent.
+ * and finalize here. Safe to call repeatedly - finalizeOrder is idempotent.
  */
 async function finalizeIfStripePaid(order: {
   stripePaymentIntentId: string | null

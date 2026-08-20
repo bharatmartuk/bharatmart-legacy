@@ -13,7 +13,7 @@ loadEnv({ path: path.join(REPO_ROOT, '.env.local'), override: true })
 if (process.env.DIRECT_URL) process.env.DATABASE_URL = process.env.DIRECT_URL
 
 const prisma = new PrismaClient()
-const DASH = /[—–]/
+const DASH = /[-–]/
 
 function hit(label: string, id: string, field: string, value: string | null | undefined) {
   if (value && DASH.test(value)) console.log(`${label} ${id}.${field}: ${value}`)

@@ -85,7 +85,7 @@ export function VerificationQueueTable({ merchants }: { merchants: PendingMercha
               >
                 <td className="px-4 py-3 font-medium text-[#1e1b16]">{merchant.storeName}</td>
                 <td className="px-4 py-3 text-[#514534]">
-                  <div>{merchant.ownerName || '—'}</div>
+                  <div>{merchant.ownerName || '-'}</div>
                   <div className="text-xs text-[#837561]">{merchant.email}</div>
                 </td>
                 <td className="px-4 py-3 text-[#514534]">{merchant.submittedAt}</td>

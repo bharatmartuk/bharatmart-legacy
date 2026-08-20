@@ -3,7 +3,7 @@ import { MerchantService } from '@bharatmart/services'
 import { getCurrentUser } from '@/auth'
 
 /**
- * Dashboard guard. Never auto-opens registration — incomplete sellers go to login
+ * Dashboard guard. Never auto-opens registration - incomplete sellers go to login
  * where they explicitly choose "Continue registration".
  */
 export async function requireMerchant() {

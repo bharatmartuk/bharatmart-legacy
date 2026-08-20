@@ -19,7 +19,7 @@ from pptx.util import Inches as PptInches
 from pptx.util import Pt as PptPt
 
 # ═══════════════════════════════════════════════════════════
-# PERSONAL DETAILS — edit these before printing / submitting
+# PERSONAL DETAILS - edit these before printing / submitting
 # ═══════════════════════════════════════════════════════════
 INTERN_NAME = "Pavan Kumar Kunukuntla"
 STUDENT_ID = "B210074"
@@ -38,7 +38,7 @@ ORG_NAME = "BharatMart.uk"
 ORG_WEBSITE = "https://bharatmart.uk"
 GITHUB_URL = "https://github.com/bharatmartuk/bharatmart-uk"
 ROLE = "Full Stack Engineer Intern"
-PROJECT_TITLE = "BharatMart UK — Multi-Merchant Grocery Marketplace"
+PROJECT_TITLE = "BharatMart UK - Multi-Merchant Grocery Marketplace"
 REPORT_MONTH = "JULY 2026"
 START_DATE = "15th June 2026"
 END_DATE = "30th July 2026"
@@ -230,7 +230,7 @@ def build_report() -> Path:
     add_centered(doc, "COMPLETION CERTIFICATE", size=16, bold=True, space_before=72)
     add_body(
         doc,
-        f"[Insert the official {ORG_NAME} internship completion certificate here — "
+        f"[Insert the official {ORG_NAME} internship completion certificate here - "
         f"scan or PDF export. Role: {ROLE}. Duration: {START_DATE} to {END_DATE}.]",
         first_line_indent=False,
     )
@@ -255,7 +255,7 @@ def build_report() -> Path:
     )
     add_body(doc, f"Place : {PLACE}", first_line_indent=False)
     add_body(doc, f"Date : {DECLARATION_DATE}", first_line_indent=False)
-    add_body(doc, f"Name of the Student — ID No\n{INTERN_NAME} — {STUDENT_ID}", first_line_indent=False)
+    add_body(doc, f"Name of the Student - ID No\n{INTERN_NAME} - {STUDENT_ID}", first_line_indent=False)
     add_centered(doc, "v", size=10, space_before=24)
 
     # ── Page 6: Acknowledgement ──
@@ -287,7 +287,7 @@ def build_report() -> Path:
         "encouragement and support throughout this internship.",
         first_line_indent=False,
     )
-    add_body(doc, f"{INTERN_NAME} — {STUDENT_ID}", first_line_indent=False)
+    add_body(doc, f"{INTERN_NAME} - {STUDENT_ID}", first_line_indent=False)
     add_centered(doc, "vi", size=10, space_before=24)
 
     # ── Abstract ──
@@ -577,11 +577,11 @@ def build_report() -> Path:
     add_heading_custom(doc, "3.1 System Architecture Overview", 2)
     add_body(
         doc,
-        "BharatMart is structured as four logical layers: (1) Presentation — Next.js "
-        "App Router UIs for web, merchant, and admin; (2) Application — Server Actions "
-        "and route handlers calling domain services; (3) Domain — packages/services "
+        "BharatMart is structured as four logical layers: (1) Presentation - Next.js "
+        "App Router UIs for web, merchant, and admin; (2) Application - Server Actions "
+        "and route handlers calling domain services; (3) Domain - packages/services "
         "repositories for products, merchants, orders, payments, reviews, and categories; "
-        "(4) Data — PostgreSQL via Prisma, plus blob media on Cloudinary. Cross-cutting "
+        "(4) Data - PostgreSQL via Prisma, plus blob media on Cloudinary. Cross-cutting "
         "concerns include Auth.js sessions, Zod schemas, and rate limiting.",
     )
     add_body(
@@ -734,9 +734,9 @@ def build_report() -> Path:
     )
     add_body(
         doc,
-        "The experience provided end-to-end ownership of a real commerce product — "
+        "The experience provided end-to-end ownership of a real commerce product - "
         "from interface composition and domain modelling to third-party integrations "
-        "and cloud deployment — strengthening readiness for industry software roles.",
+        "and cloud deployment - strengthening readiness for industry software roles.",
     )
     add_heading_custom(doc, "6.2 Future Enhancements", 2)
     for item in [
@@ -848,7 +848,7 @@ def build_pptx() -> Path:
     add_bullets(
         slide,
         [
-            "BharatMart.uk — UK marketplace for Indian groceries & homemade foods",
+            "BharatMart.uk - UK marketplace for Indian groceries & homemade foods",
             "Connects customers with independent merchants",
             "Product focus: discovery, local delivery, trusted checkout",
             f"Website: {ORG_WEBSITE}",
@@ -886,7 +886,7 @@ def build_pptx() -> Path:
 
     # 6 Role
     slide = prs.slides.add_slide(prs.slide_layouts[6])
-    add_slide_title(slide, "My Role — Full Stack Engineer Intern")
+    add_slide_title(slide, "My Role - Full Stack Engineer Intern")
     add_bullets(
         slide,
         [
@@ -894,7 +894,7 @@ def build_pptx() -> Path:
             "UI/UX: branding, header, mobile nav, product & checkout flows",
             "Backend: services/repositories, Server Actions, Prisma models",
             "Also supported: admin CMS hooks, merchant media/uploads, deploys",
-            "Not claimed as product ML/agentic AI — focus is commerce engineering",
+            "Not claimed as product ML/agentic AI - focus is commerce engineering",
         ],
     )
 
@@ -914,7 +914,7 @@ def build_pptx() -> Path:
 
     # 8 Features 1
     slide = prs.slides.add_slide(prs.slide_layouts[6])
-    add_slide_title(slide, "What I Built — Discovery & UX")
+    add_slide_title(slide, "What I Built - Discovery & UX")
     add_bullets(
         slide,
         [
@@ -929,7 +929,7 @@ def build_pptx() -> Path:
 
     # 9 Features 2
     slide = prs.slides.add_slide(prs.slide_layouts[6])
-    add_slide_title(slide, "What I Built — Commerce & Location")
+    add_slide_title(slide, "What I Built - Commerce & Location")
     add_bullets(
         slide,
         [
@@ -1022,7 +1022,7 @@ def build_pptx() -> Path:
     for i, line in enumerate(
         [
             "Questions welcome",
-            f"{INTERN_NAME} — {STUDENT_ID}",
+            f"{INTERN_NAME} - {STUDENT_ID}",
             f"{ORG_NAME} · {ROLE}",
             GITHUB_URL,
         ]
@@ -1047,8 +1047,8 @@ def main():
         f"""# BharatMart Internship Report & PPT
 
 Generated files:
-- `BharatMart_Internship_Report.docx` — same structure as your friend's sample PDF
-- `BharatMart_Internship_Presentation.pptx` — explanation slides for the review
+- `BharatMart_Internship_Report.docx` - same structure as your friend's sample PDF
+- `BharatMart_Internship_Presentation.pptx` - explanation slides for the review
 
 ## Fill these placeholders before submitting
 
@@ -1069,7 +1069,7 @@ Required fields:
 
 ## Role used in documents
 
-**{ROLE}** (Full Stack) — matches shipped BharatMart web work.
+**{ROLE}** (Full Stack) - matches shipped BharatMart web work.
 
 ## After generate
 

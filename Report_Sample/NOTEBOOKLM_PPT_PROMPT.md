@@ -1,10 +1,10 @@
-# NotebookLM Prompt — BharatMart Internship Review PPT
+# NotebookLM Prompt - BharatMart Internship Review PPT
 
 Use the attached sample deck style as visual reference:
 
 `Precision_Hospitality_AI_Review.pdf.pdf`
 
-Create a **new** internship review presentation for **BharatMart UK**, matching that sample’s **slide count, visual language, pacing, and layout patterns** — but with **BharatMart content only** (do not keep Flavio / hospitality AI wording).
+Create a **new** internship review presentation for **BharatMart UK**, matching that sample’s **slide count, visual language, pacing, and layout patterns** - but with **BharatMart content only** (do not keep Flavio / hospitality AI wording).
 
 ---
 
@@ -43,7 +43,7 @@ PROJECT / PERSON DETAILS (use exactly):
 - HOD: Mr. B Venkat Raman
 - Role title on slides: Full Stack Engineer Intern
 - Organisation: BharatMart.uk
-- Project: BharatMart UK — Multi-Merchant Grocery Marketplace
+- Project: BharatMart UK - Multi-Merchant Grocery Marketplace
 - Mentor: Uday Kumar Kadiyam
 - College: RGUKT Basar
 - Internship window: 15 June 2026 – 30 July 2026
@@ -60,21 +60,21 @@ CONTENT RULES:
 
 SLIDE PLAN (follow this structure; mirror the sample’s narrative arc):
 
-SLIDE 1 — Title
-- Big title: “BharatMart UK — Multi-Merchant Grocery Marketplace”
+SLIDE 1 - Title
+- Big title: “BharatMart UK - Multi-Merchant Grocery Marketplace”
 - Subtitle: “Professional Internship Review: Building and shipping a production storefront”
 - Intern card (bottom-left window chrome): Sai Manjith Paripelli · Full Stack Engineer Intern
 - Meta (bottom-right): BharatMart.uk · 15 June – 30 July 2026 · (Work shown till 23 July)
 - Hero visual metaphor: marketplace / grocery / checkout UI collage or monorepo architecture vignette (not Flavio receipt)
 
-SLIDE 2 — Problem framing (like “The Pre-Order Blind Spot”)
+SLIDE 2 - Problem framing (like “The Pre-Order Blind Spot”)
 - Title idea: “The Fragmented Grocery Discovery Problem”
 - Top callout: Without a unified marketplace, shoppers rely on WhatsApp/single shops → missed discovery + unclear delivery eligibility
 - Left: chaos (fragmented channels)
 - Right: structured marketplace signals { Categories } { Search } { Postcode delivery } { Multi-merchant cart }
 - Bottom goal: “The BharatMart Goal: Trusted UK Indian grocery commerce with local delivery awareness.”
 
-SLIDE 3 — System arc (like “Intelligence to Operations Arc”)
+SLIDE 3 - System arc (like “Intelligence to Operations Arc”)
 - Title: “Browse → Locate → Checkout Arc”
 - Three stages:
   1) Input: catalogue + UK postcode + search intent
@@ -82,7 +82,7 @@ SLIDE 3 — System arc (like “Intelligence to Operations Arc”)
   3) Output: filtered products, cart/wishlist, Stripe/COD multi-merchant orders
 - Show outputs as “tickets/cards” for Customer / Merchant / Admin
 
-SLIDE 4 — Role streams (like “One Role, Three Streams”)
+SLIDE 4 - Role streams (like “One Role, Three Streams”)
 - Title: “One Role, Three Streams of Execution”
 - Subtitle: “Primary ownership of customer web, supported by platform delivery.”
 - Three columns:
@@ -90,7 +90,7 @@ SLIDE 4 — Role streams (like “One Role, Three Streams”)
   2) Full-Stack Commerce (auth, cart, wishlist, checkout, Stripe/COD, orders)
   3) Platform & Ops (Cloudinary, admin CMS hooks, Vercel/Auth/Prisma hardening, rate limits)
 
-SLIDE 5 — Timeline topography (like “Six Weeks of Impact”)
+SLIDE 5 - Timeline topography (like “Six Weeks of Impact”)
 - Title: “Six+ Weeks of Impact Topography”
 - Map June 15 → July 23 with peaks:
   - Foundation (15–30 Jun)
@@ -103,17 +103,17 @@ SLIDE 5 — Timeline topography (like “Six Weeks of Impact”)
   - [PEAK] Postcode gate + favourites CTA (23 Jul)
 - Footer note: Remaining week 24–30 Jul = QA, report, demo scripting
 
-SLIDE 6 — Architecture
+SLIDE 6 - Architecture
 - Title: “Monorepo Architecture at a Glance”
 - Show apps/web, apps/merchant, apps/admin → shared packages → PostgreSQL/Prisma + Cloudinary + Stripe + Auth.js + Vercel
 - Keep it diagram-first
 
-SLIDE 7 — Signature feature deep-dive #1
+SLIDE 7 - Signature feature deep-dive #1
 - Title: “UK Postcode Gate & Delivery Filtering”
 - Flow: modal soft-gate → location chip/cookie → filter merchants by deliveryPostcodes → filtered storefront
 - Note logged-in users use saved address; guests may skip
 
-SLIDE 8 — Signature feature deep-dive #2
+SLIDE 8 - Signature feature deep-dive #2
 - Title: “Commerce Path That Ships”
 - Cart + wishlist auth gates with resume-after-login
 - Checkout stepper Address → Payment → Review
@@ -121,14 +121,14 @@ SLIDE 8 — Signature feature deep-dive #2
 - One customer order → per-merchant MerchantOrders
 - Product page CTA: Add to favourites (not chat-with-seller)
 
-SLIDE 9 — Discovery stack
+SLIDE 9 - Discovery stack
 - Title: “Search Without Overclaiming AI”
 - Header suggest API: autocomplete vs recommended products
 - Fuzzy relevance ranking (prefix/token/subsequence heuristics)
 - Popularity recommendations when query empty
-- Explicit line: “Heuristic ranking — not trained ML / not LLM agents”
+- Explicit line: “Heuristic ranking - not trained ML / not LLM agents”
 
-SLIDE 10 — Production hardening
+SLIDE 10 - Production hardening
 - Title: “What It Took to Make It Live”
 - Vercel multi-app deploy
 - Prisma engine bundling
@@ -137,19 +137,19 @@ SLIDE 10 — Production hardening
 - Rate limits, ESLint/build fixes
 - Result callout: “Storefront stays deployable and operable.”
 
-SLIDE 11 — Outcomes / evidence
+SLIDE 11 - Outcomes / evidence
 - Title: “Delivered Outcomes”
 - Grid of objective → outcome cards:
   Storefront UX, Discovery, Delivery awareness, Commerce, Media/CMS, Production
 - Optional mini metric-style cards (qualitative is fine): end-to-end purchase path, mobile-ready chrome, deployable monorepo
 
-SLIDE 12 — Key learnings (2x2 cards like sample)
+SLIDE 12 - Key learnings (2x2 cards like sample)
 - // Product ownership
 - // UX under commerce constraints
 - // Platform reality (auth/media/deploy)
 - // Honest scoping (heuristics ≠ ML theatre)
 
-SLIDE 13 — Next steps & close
+SLIDE 13 - Next steps & close
 - Immediate (24–30 July): final QA, report polish, demo script
 - Future: server-synced wishlist, review write flow, stronger personalisation later, E2E tests, merchant coupon UI
 - Closing card: Thank you · Sai Manjith Paripelli · B210840 · Questions welcome

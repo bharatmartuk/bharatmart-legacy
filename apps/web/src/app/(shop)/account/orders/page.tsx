@@ -56,7 +56,7 @@ export default async function OrdersPage() {
                 {order.merchantOrders.length === 0 ? (
                   <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg bg-[#f9f3ea] px-3 py-2">
                     <p className="text-sm text-[#514534]">
-                      Awaiting payment confirmation — open the order to see the latest.
+                      Awaiting payment confirmation - open the order to see the latest.
                     </p>
                     <Badge className={ORDER_STATUS_STYLES.PLACED}>Order placed</Badge>
                   </div>

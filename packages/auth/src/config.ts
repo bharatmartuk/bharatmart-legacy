@@ -218,11 +218,11 @@ export function buildAuthConfig(allowedRoles: UserRoleType[]): AuthOptions {
                 token.merchantId = byEmail.merchant?.id ?? null
                 token.invalid = false
               } else {
-                // Account was deleted — drop identity so portals land on /login, not registration.
+                // Account was deleted - drop identity so portals land on /login, not registration.
                 return { invalid: true }
               }
             } else {
-              // Account was deleted — drop identity so portals land on /login, not registration.
+              // Account was deleted - drop identity so portals land on /login, not registration.
               return { invalid: true }
             }
           } catch {

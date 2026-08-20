@@ -105,7 +105,7 @@ export function createMerchantPortalMiddleware() {
     }
 
     // Registration is reachable without a session so new sellers can sign up
-    // from the login page link — but it is not the default landing page.
+    // from the login page link - but it is not the default landing page.
     if (
       pathname === '/register-business' ||
       pathname.startsWith('/register-business/')
@@ -145,7 +145,7 @@ export function createMerchantPortalMiddleware() {
     )
 
     // Incomplete sellers (customer account, or merchant role with no store yet).
-    // They may open onboarding routes explicitly — never via homepage auto-redirect.
+    // They may open onboarding routes explicitly - never via homepage auto-redirect.
     const incompleteSeller =
       role === UserRole.CUSTOMER || (role === UserRole.MERCHANT && !token.merchantId)
 

@@ -331,7 +331,7 @@ export default async function MerchantProductsPage({
                                 {product.category.name}
                               </p>
                               <p className="mt-0.5 truncate text-xs text-[#837561]">
-                                SKU: {product.sku?.trim() ? product.sku : '—'}
+                                SKU: {product.sku?.trim() ? product.sku : '-'}
                               </p>
                             </div>
                           </div>
@@ -398,7 +398,7 @@ export default async function MerchantProductsPage({
                           <h2 className="truncate font-semibold text-[#1e1b16]">{product.name}</h2>
                           <p className="text-xs text-[#837561]">{product.category.name}</p>
                           <p className="text-xs text-[#837561]">
-                            SKU: {product.sku?.trim() ? product.sku : '—'}
+                            SKU: {product.sku?.trim() ? product.sku : '-'}
                           </p>
                         </div>
                         <ProductStatusBadge

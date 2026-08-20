@@ -18,7 +18,7 @@ Then in `main.tex`, replace the reserved `\fbox{...}` for Figure~\ref{fig:postco
 Create ONE clean academic product-UX diagram for a B.Tech internship report.
 
 Title (top centre):
-"BharatMart UK — Postcode Gate & Delivery Filtering"
+"BharatMart UK - Postcode Gate & Delivery Filtering"
 
 Purpose:
 Explain how a guest sets a UK delivery postcode, can skip, and how products/merchants are filtered by delivery area.
@@ -33,7 +33,7 @@ Style:
 
 LAYOUT (left → right, 4 panels connected by arrows):
 
-PANEL 1 — Soft Gate Modal
+PANEL 1 - Soft Gate Modal
 Label: "1. First visit"
 Show a centred modal card titled "Enter your delivery postcode"
 Contents inside modal:
@@ -43,7 +43,7 @@ Contents inside modal:
 - Secondary text link: "Skip for now"
 Caption under panel: Guest soft-gate (login not required)
 
-PANEL 2 — Location Chip
+PANEL 2 - Location Chip
 Label: "2. Header location"
 Show a simple website header strip with:
 - Logo text "BharatMart"
@@ -51,7 +51,7 @@ Show a simple website header strip with:
 - Search bar outline
 Caption: Postcode stored (cookie) and shown in header
 
-PANEL 3 — Filtering Logic
+PANEL 3 - Filtering Logic
 Label: "3. Delivery filter"
 Show a box titled "Filter catalogue"
 Bullets:
@@ -60,7 +60,7 @@ Bullets:
 - Hide out-of-area sellers/products
 Caption: Domain services filter merchants & products
 
-PANEL 4 — Result
+PANEL 4 - Result
 Label: "4. Filtered storefront"
 Show a simple product grid of 4 cards (generic food labels like Pickles, Snacks) with a small badge "Delivers to your area"
 Caption: User only sees deliverable options

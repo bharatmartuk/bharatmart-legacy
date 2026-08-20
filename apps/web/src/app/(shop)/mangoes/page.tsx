@@ -27,7 +27,7 @@ export default function MangoesPage() {
           </h1>
           <p className="mt-4 max-w-xl text-sm leading-7 text-white/90 md:text-base">
             Premium A-Grade Banganapally and Alphonso mangoes from India. The 2026 customer
-            booking window has closed — stock for retail customers is sold out.
+            booking window has closed - stock for retail customers is sold out.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a
@@ -55,14 +55,14 @@ export default function MangoesPage() {
               Customers · 2026
             </p>
             <h2 className="mt-2 font-heading text-xl font-semibold text-[#1e1b16]">
-              Booking closed — out of stock
+              Booking closed - out of stock
             </h2>
             <p className="mt-3 text-sm leading-6 text-[#514534]">
               We are not taking mango orders for individual customers right now. The 2026 season
               allocation is fully booked and stock is unavailable for retail purchase.
             </p>
             <p className="mt-3 text-sm leading-6 text-[#837561]">
-              Customer pre-orders will reopen for a future season — watch this page or message us
+              Customer pre-orders will reopen for a future season - watch this page or message us
               on WhatsApp for updates.
             </p>
           </div>
@@ -75,7 +75,7 @@ export default function MangoesPage() {
               Wholesale registrations open
             </h2>
             <p className="mt-3 text-sm leading-6 text-[#514534]">
-              We are accepting <strong>2027 distributor partners only</strong> — shops,
+              We are accepting <strong>2027 distributor partners only</strong> - shops,
               wholesalers and bulk buyers across the UK. This is not a customer checkout.
             </p>
             <ul className="mt-4 space-y-2 text-sm text-[#514534]">
@@ -87,7 +87,7 @@ export default function MangoesPage() {
                 <strong>Minimum order:</strong> 100 boxes total
               </li>
               <li>
-                Final prices can change with market conditions, freight and seasonal supply —
+                Final prices can change with market conditions, freight and seasonal supply -
                 we confirm the rate when we accept your booking.
               </li>
             </ul>
@@ -111,7 +111,7 @@ export default function MangoesPage() {
           </h2>
           <p className="mt-2 text-sm leading-6 text-[#514534]">
             Tell us your location, mango types and box quantities. Guide rates are{' '}
-            <strong>2 KG (£13.50)</strong> and <strong>3 KG (£18.50)</strong> per box — these are
+            <strong>2 KG (£13.50)</strong> and <strong>3 KG (£18.50)</strong> per box - these are
             indicative and may vary with market situations. Minimum <strong>100 boxes</strong>.
           </p>
           <div className="mt-8">

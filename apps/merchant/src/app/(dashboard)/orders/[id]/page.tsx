@@ -156,7 +156,7 @@ export default async function MerchantOrderDetailPage({
                       {item.productNameSnapshot}
                     </p>
                     <p className="text-xs text-[#837561]">
-                      SKU: {item.product?.sku?.trim() ? item.product.sku : '—'}
+                      SKU: {item.product?.sku?.trim() ? item.product.sku : '-'}
                     </p>
                   </div>
                   <span className="rounded-lg border border-[#d6c4ad] bg-white px-2.5 py-1 text-xs font-medium text-[#514534]">

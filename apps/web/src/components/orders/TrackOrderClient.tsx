@@ -103,7 +103,7 @@ export function TrackOrderClient() {
 
             {result.order.merchantOrders.length === 0 ? (
               <p className="rounded-lg bg-[#f9f3ea] px-3 py-2 text-[#514534]">
-                Payment is still pending — merchants will start preparing once payment is confirmed.
+                Payment is still pending - merchants will start preparing once payment is confirmed.
               </p>
             ) : (
               result.order.merchantOrders.map((mo) => (

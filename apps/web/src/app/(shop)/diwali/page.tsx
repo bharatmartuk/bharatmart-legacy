@@ -6,7 +6,7 @@ import { WHATSAPP_URL } from '@/lib/contact'
 export const metadata: Metadata = {
   title: 'Diwali Collection - Festival Essentials | BharatMart UK',
   description:
-    'Shop authentic Diwali essentials - diyas, pooja kits, rangoli materials, and festive décor delivered across the UK.',
+    'Shop authentic Diwali essentials - diyas, pooja kits, rangoli materials, and festive decor delivered across the UK.',
 }
 
 const kits = [
@@ -46,7 +46,7 @@ export default function DiwaliPage() {
               Diwali Collection
             </h1>
             <p className="mt-3 text-sm leading-7 text-white/90 md:text-base">
-              From elegant diyas and traditional pooja kits to vibrant rangoli and festive décor —
+              From elegant diyas and traditional pooja kits to vibrant rangoli and festive decor -
               celebrate Diwali authentically across the UK.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -91,7 +91,7 @@ export default function DiwaliPage() {
         <section className="mt-14 rounded-2xl border border-[#e8d9c8] bg-[#fff8f0] p-6 md:p-8">
           <h2 className="font-heading text-xl font-semibold text-[#1e1b16]">Enquire about Diwali</h2>
           <p className="mt-1 text-sm text-[#514534]">
-            Tell us what you need — we will help with kits, quantities and UK delivery.
+            Tell us what you need - we will help with kits, quantities and UK delivery.
           </p>
           <div className="mt-6">
             <DiwaliEnquiryForm />

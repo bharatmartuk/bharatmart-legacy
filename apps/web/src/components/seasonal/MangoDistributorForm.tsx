@@ -218,7 +218,7 @@ export function MangoDistributorForm() {
               <span className="ml-2 text-[#B71C1C]">(need {100 - totalBoxes} more)</span>
             ) : null}
             <p className="mt-1 text-xs text-[#5a6b5a]">
-              *Guide prices only — final rates confirmed on acceptance and may vary with market
+              *Guide prices only - final rates confirmed on acceptance and may vary with market
               conditions.
             </p>
           </div>

@@ -116,7 +116,7 @@ export const UploadService = {
 
   /**
    * Fetch a stored upload for admin review.
-   * PDFs on many Cloudinary accounts return 401 on public URLs — use authenticated download.
+   * PDFs on many Cloudinary accounts return 401 on public URLs - use authenticated download.
    * `preview: true` returns the first page as JPEG for PDF overview cards.
    */
   async fetchStoredFile(

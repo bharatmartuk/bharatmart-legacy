@@ -35,7 +35,7 @@ export function DiwaliEnquiryForm() {
         toast.error(data.error ?? 'Could not submit enquiry')
         return
       }
-      toast.success('Enquiry received — we will contact you soon.')
+      toast.success('Enquiry received - we will contact you soon.')
       setName('')
       setEmail('')
       setPhone('')

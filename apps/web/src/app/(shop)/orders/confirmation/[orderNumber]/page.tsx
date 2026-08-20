@@ -41,7 +41,7 @@ export default async function GuestOrderConfirmationPage({
         {placed === '1' ? 'Thank you for your order' : 'Order confirmation'}
       </h1>
       <p className="mt-2 text-sm text-[#514534]">
-        {guestName ? `Hi ${guestName} — ` : null}
+        {guestName ? `Hi ${guestName} - ` : null}
         Your order <strong>{order.orderNumber}</strong> was placed on{' '}
         {dateFormatter.format(order.placedAt)}.
       </p>

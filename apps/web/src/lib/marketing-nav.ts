@@ -50,14 +50,14 @@ export const SEASONAL_CTAS = [
   },
   {
     title: 'Diwali',
-    description: 'Diyas, pooja kits, rangoli and festive décor.',
+    description: 'Diyas, pooja kits, rangoli and festive decor.',
     href: '/diwali',
     image: '/seasonal/diwali/banner_2.png',
     accent: '#B3472C',
   },
   {
     title: 'Mangoes',
-    description: '2026 sold out for customers — 2027 distributors welcome.',
+    description: '2026 sold out for customers - 2027 distributors welcome.',
     href: '/mangoes',
     image: '/seasonal/mangoes/bharatmart_booking_form_mangoes.jpeg',
     accent: '#F9A825',

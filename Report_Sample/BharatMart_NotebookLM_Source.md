@@ -1,4 +1,4 @@
-# BharatMart UK — Internship Project Source Document
+# BharatMart UK - Internship Project Source Document
 
 **Purpose:** Upload this file as a NotebookLM source for generating the internship review slide deck and related materials.
 
@@ -27,7 +27,7 @@
 | Stipend | Unpaid (as applicable to programme) |
 
 **One-line pitch for slides:**  
-During my internship at BharatMart.uk, I owned end-to-end delivery of the customer marketplace storefront — UI/UX and full-stack — including discovery, UK postcode delivery filtering, cart/wishlist, multi-merchant checkout, and production deployment on Vercel.
+During my internship at BharatMart.uk, I owned end-to-end delivery of the customer marketplace storefront - UI/UX and full-stack - including discovery, UK postcode delivery filtering, cart/wishlist, multi-merchant checkout, and production deployment on Vercel.
 
 ---
 
@@ -63,7 +63,7 @@ Merchants need onboarding, catalogue tools, and order handling. Operators need v
 
 **Role title to use on slides:** Full Stack Engineer Intern  
 
-**Primary ownership:** `apps/web` — the customer-facing marketplace  
+**Primary ownership:** `apps/web` - the customer-facing marketplace  
 
 **Also contributed to / supported:**
 
@@ -74,12 +74,12 @@ Merchants need onboarding, catalogue tools, and order handling. Operators need v
 
 **Three streams of execution (for “one role, three streams” slide):**
 
-1. **Storefront UI/UX** — branding, header, categories nav, hero carousel, mobile nav, product pages, favourites CTA, sticky filters  
-2. **Full-stack commerce** — auth, catalogue, search, cart, wishlist, postcode location, checkout, Stripe/COD, multi-merchant orders  
-3. **Platform & ops** — Cloudinary media, rate limits, seed/demo data, admin marketplace tools, Vercel/Auth/Prisma production fixes  
+1. **Storefront UI/UX** - branding, header, categories nav, hero carousel, mobile nav, product pages, favourites CTA, sticky filters  
+2. **Full-stack commerce** - auth, catalogue, search, cart, wishlist, postcode location, checkout, Stripe/COD, multi-merchant orders  
+3. **Platform & ops** - Cloudinary media, rate limits, seed/demo data, admin marketplace tools, Vercel/Auth/Prisma production fixes  
 
 **Important accuracy rule for AI-generated slides:**  
-Do **not** claim trained ML models, embeddings, LLM chatbots, or agentic AI product features. Search uses **heuristic fuzzy ranking** and popularity sorting — not machine learning models.
+Do **not** claim trained ML models, embeddings, LLM chatbots, or agentic AI product features. Search uses **heuristic fuzzy ranking** and popularity sorting - not machine learning models.
 
 ---
 
@@ -108,10 +108,10 @@ Do **not** claim trained ML models, embeddings, LLM chatbots, or agentic AI prod
 
 ### 5.3 Logical layers
 
-1. **Presentation** — Next.js 15 App Router UIs  
-2. **Application** — Server Actions + route handlers  
-3. **Domain** — Product, Merchant, Order, Payment, Category, Review, Banner services  
-4. **Data & integrations** — PostgreSQL (Prisma), Cloudinary, Stripe, Auth.js, Vercel  
+1. **Presentation** - Next.js 15 App Router UIs  
+2. **Application** - Server Actions + route handlers  
+3. **Domain** - Product, Merchant, Order, Payment, Category, Review, Banner services  
+4. **Data & integrations** - PostgreSQL (Prisma), Cloudinary, Stripe, Auth.js, Vercel  
 
 ### 5.4 Key domain concepts
 
@@ -147,12 +147,12 @@ Do **not** claim trained ML models, embeddings, LLM chatbots, or agentic AI prod
 
 ## 7. Customer journey (Browse → Locate → Checkout)
 
-1. **Discover** — Homepage hero carousel, categories, featured merchants  
-2. **Locate** — Guest UK postcode soft-gate (continue or skip); location chip in header; logged-in users use saved/default address  
-3. **Browse** — Product listing with filters/sort/pagination; fuzzy search + autocomplete; product detail with gallery, reviews, related products  
-4. **Save / Cart** — Add to favourites (wishlist); add to cart; auth gate with resume-after-login when required  
-5. **Checkout** — Multi-step: Address → Payment → Review; Stripe or COD  
-6. **Confirm** — Multi-merchant order creation; account / order history  
+1. **Discover** - Homepage hero carousel, categories, featured merchants  
+2. **Locate** - Guest UK postcode soft-gate (continue or skip); location chip in header; logged-in users use saved/default address  
+3. **Browse** - Product listing with filters/sort/pagination; fuzzy search + autocomplete; product detail with gallery, reviews, related products  
+4. **Save / Cart** - Add to favourites (wishlist); add to cart; auth gate with resume-after-login when required  
+5. **Checkout** - Multi-step: Address → Payment → Review; Stripe or COD  
+6. **Confirm** - Multi-merchant order creation; account / order history  
 
 **Product detail CTA change:** Removed “Chat with Seller on WhatsApp”; replaced with **Add to favourites / Saved to favourites** beside Add to cart. Heart icon on image gallery remains.
 
@@ -176,7 +176,7 @@ Do **not** claim trained ML models, embeddings, LLM chatbots, or agentic AI prod
 - Header search suggest API
 - Modes: **autocomplete** (when query present) and **recommended products** (when empty)
 - Recommendations when empty query: popularity via review count / average rating
-- Product search relevance: hand-tuned **fuzzy/string scoring** (prefix, contains, token, subsequence) — classical IR heuristics, **not** a trained ML model
+- Product search relevance: hand-tuned **fuzzy/string scoring** (prefix, contains, token, subsequence) - classical IR heuristics, **not** a trained ML model
 - Related products: same-category listing
 
 ### 8.3 UK postcode / delivery filtering
@@ -257,7 +257,7 @@ Do **not** claim trained ML models, embeddings, LLM chatbots, or agentic AI prod
 
 - Wishlist UI is primarily **client Zustand** persistence; full server wishlist sync is a future enhancement  
 - Customer **review write** flow is not the focus of this internship slice (reviews can be listed/read)  
-- WhatsApp exists as support deep-links / float CTA on some surfaces — **not** a WhatsApp Business API bot and **not** an AI agent  
+- WhatsApp exists as support deep-links / float CTA on some surfaces - **not** a WhatsApp Business API bot and **not** an AI agent  
 - No OpenAI/Anthropic/LangChain/embeddings/vector DB product features in the shipped codebase  
 - Some admin/merchant pages remain placeholders (e.g. certain settings/users/analytics stubs) while core flows work  
 
@@ -276,20 +276,20 @@ Do **not** claim trained ML models, embeddings, LLM chatbots, or agentic AI prod
 
 ## 13. Suggested demo script (for presentation)
 
-1. Open homepage — hero, categories, featured merchants  
-2. Enter UK postcode — see location chip and deliverable catalogue filtering  
-3. Search a product — open product detail — **Add to favourites**  
-4. Add to cart — proceed to checkout — show Address → Payment → Review (Stripe test or COD)  
+1. Open homepage - hero, categories, featured merchants  
+2. Enter UK postcode - see location chip and deliverable catalogue filtering  
+3. Search a product - open product detail - **Add to favourites**  
+4. Add to cart - proceed to checkout - show Address → Payment → Review (Stripe test or COD)  
 5. Optional: admin banner edit or merchant verification glimpse  
 
 ---
 
 ## 14. Key learnings (for “learnings” slide)
 
-1. **Product ownership** — shipping a real commerce path beats isolated UI mockups  
-2. **UX under constraints** — postcode-first delivery UX and auth-gated cart/wishlist need careful guest vs logged-in design  
-3. **Platform reality** — Auth cookies, Prisma engines, Cloudinary on serverless, and Vercel multi-app deploy are part of “done”  
-4. **Honest scoping** — heuristic search ranking is valuable engineering; it is not the same as claiming ML/agentic AI  
+1. **Product ownership** - shipping a real commerce path beats isolated UI mockups  
+2. **UX under constraints** - postcode-first delivery UX and auth-gated cart/wishlist need careful guest vs logged-in design  
+3. **Platform reality** - Auth cookies, Prisma engines, Cloudinary on serverless, and Vercel multi-app deploy are part of “done”  
+4. **Honest scoping** - heuristic search ranking is valuable engineering; it is not the same as claiming ML/agentic AI  
 
 ---
 

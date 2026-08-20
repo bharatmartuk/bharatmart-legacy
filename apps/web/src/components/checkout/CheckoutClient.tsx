@@ -224,7 +224,7 @@ function StripePayButton({
       return
     }
 
-    // Don't rely on the Stripe webhook alone — finalize before showing tracking.
+    // Don't rely on the Stripe webhook alone - finalize before showing tracking.
     await confirmCardOrder(orderId)
     setConfirming(false)
 

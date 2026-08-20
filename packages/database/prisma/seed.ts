@@ -154,7 +154,7 @@ const merchants = [
     storeName: 'Festival Lights Emporium',
     storeSlug: 'festival-lights-emporium',
     storeDescription:
-      'Diwali, Holi and Navratri collections - diyas, rangoli kits, festive décor and gift hampers curated for UK celebrations.',
+      'Diwali, Holi and Navratri collections - diyas, rangoli kits, festive decor and gift hampers curated for UK celebrations.',
     deliveryPostcodes: ['HA1', 'HA2', 'UB1', 'UB5', 'NW9', 'NW10'],
     hasPhysicalStore: true,
   },
@@ -511,7 +511,7 @@ const baseProducts: SeedProduct[] = [
     sku: 'NVS-RCK-015',
   },
 
-  // Festive Collections — Diwali
+  // Festive Collections - Diwali
   {
     merchantSlug: 'festival-lights-emporium',
     categorySlug: 'diwali',
@@ -528,7 +528,7 @@ const baseProducts: SeedProduct[] = [
     categorySlug: 'diwali',
     name: 'Premium Rangoli Colour Kit',
     slug: 'premium-rangoli-colour-kit',
-    description: 'Vibrant rangoli powders with stencils for festive doorway décor.',
+    description: 'Vibrant rangoli powders with stencils for festive doorway decor.',
     priceInPence: 999,
     stockQuantity: 55,
     sku: 'FLE-RNG-002',
@@ -646,7 +646,7 @@ const baseProducts: SeedProduct[] = [
     sku: 'BHU-IDL-003',
   },
 
-  // Seasonal Stuff — Mangoes
+  // Seasonal Stuff - Mangoes
   {
     merchantSlug: 'seasons-bazaar',
     categorySlug: 'mangoes',
@@ -1378,7 +1378,7 @@ async function seedBanners() {
       slug: 'rakshabandhan',
       fallbackImageUrl: null as string | null,
       headline: 'Raksha Bandhan Collection',
-      subtext: 'Celebrate the bond with festive rakhis and gifts — launching soon.',
+      subtext: 'Celebrate the bond with festive rakhis and gifts - launching soon.',
       ctaText: null as string | null,
       ctaLink: null as string | null,
       comingSoon: true,

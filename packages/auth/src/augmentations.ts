@@ -20,7 +20,7 @@ declare module '@auth/core/jwt' {
   interface JWT {
     role?: UserRole
     merchantId?: string | null
-    /** Set when the DB user no longer exists — middleware treats session as logged out. */
+    /** Set when the DB user no longer exists - middleware treats session as logged out. */
     invalid?: boolean
   }
 }

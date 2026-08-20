@@ -61,7 +61,7 @@ export function BecomeSellerDialog({ open, onOpenChange }: BecomeSellerDialogPro
           toast.error(data.error ?? 'Something went wrong.')
           return
         }
-        toast.success('Thanks — we will be in touch soon.')
+        toast.success('Thanks - we will be in touch soon.')
         reset()
         onOpenChange(false)
       } catch {

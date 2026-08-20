@@ -22,9 +22,9 @@ const CAROUSEL_SLIDES = [
   {
     id: 'carousel_rakhi_legacy',
     imageUrl: '/seasonal/rakhi/banner_01_rakhi.jpg',
-    headline: 'Raksha Bandhan — Celebrate the Bond of Love Across the UK',
+    headline: 'Raksha Bandhan - Celebrate the Bond of Love Across the UK',
     subtext:
-      'Authentic Indian rakhis, gift hampers and festive essentials for brothers and sisters — delivered across the UK.',
+      'Authentic Indian rakhis, gift hampers and festive essentials for brothers and sisters - delivered across the UK.',
     ctaText: 'Book Rakhis Now',
     ctaLink: '/products?category=rakhi',
     comingSoon: false,
@@ -43,8 +43,8 @@ const CAROUSEL_SLIDES = [
   {
     id: 'carousel_diwali_legacy',
     imageUrl: '/seasonal/diwali/banner_2.png',
-    headline: 'Diwali Collection — Festival Essentials',
-    subtext: 'Diyas, pooja kits, rangoli and festive décor curated for UK celebrations.',
+    headline: 'Diwali Collection - Festival Essentials',
+    subtext: 'Diyas, pooja kits, rangoli and festive decor curated for UK celebrations.',
     ctaText: 'Explore Diwali',
     ctaLink: '/diwali',
     comingSoon: false,
@@ -53,7 +53,7 @@ const CAROUSEL_SLIDES = [
   {
     id: 'carousel_mangoes_legacy',
     imageUrl: '/seasonal/mangoes/bharatmart_booking_form_mangoes.jpeg',
-    headline: 'Indian Mangoes — Premium A-Grade',
+    headline: 'Indian Mangoes - Premium A-Grade',
     subtext: 'Banganapally and Alphonso mangoes. Pre-order for personal use or become a 2027 distributor.',
     ctaText: 'Book Mangoes',
     ctaLink: '/mangoes',

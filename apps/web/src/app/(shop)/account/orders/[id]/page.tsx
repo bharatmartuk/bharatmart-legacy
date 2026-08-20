@@ -69,7 +69,7 @@ export default async function OrderDetailPage({
               <Timeline step={0} />
               <p className="rounded-lg bg-[#f9f3ea] px-3 py-2 text-sm text-[#514534]">
                 We have your order. Merchant fulfilment details appear here as soon as the payment
-                is confirmed — this usually takes a few seconds. Refresh if it stays this way.
+                is confirmed - this usually takes a few seconds. Refresh if it stays this way.
               </p>
             </CardContent>
           </Card>

@@ -14,7 +14,7 @@ function DetailRow({ label, value }: { label: string; value: ReactNode }) {
   return (
     <div className="grid gap-1 border-b border-[#f0e6d8] py-3 last:border-b-0 sm:grid-cols-[180px_minmax(0,1fr)] sm:gap-4">
       <dt className="text-xs font-medium uppercase tracking-wide text-[#837561]">{label}</dt>
-      <dd className="text-sm text-[#1e1b16]">{value || '—'}</dd>
+      <dd className="text-sm text-[#1e1b16]">{value || '-'}</dd>
     </div>
   )
 }
@@ -108,7 +108,7 @@ export default async function MerchantVerificationPage({
               />
               <DetailRow
                 label="Physical store"
-                value={merchant.hasPhysicalStore ? 'Yes — photo required' : 'No (online-only)'}
+                value={merchant.hasPhysicalStore ? 'Yes - photo required' : 'No (online-only)'}
               />
               <DetailRow
                 label="Food licence"

@@ -1,8 +1,8 @@
 # BharatMart Internship Report & PPT
 
 Generated files:
-- `BharatMart_Internship_Report.docx` — same structure as your friend's sample PDF
-- `BharatMart_Internship_Presentation.pptx` — explanation slides for the review
+- `BharatMart_Internship_Report.docx` - same structure as your friend's sample PDF
+- `BharatMart_Internship_Presentation.pptx` - explanation slides for the review
 
 ## Fill these placeholders before submitting
 
@@ -23,7 +23,7 @@ Required fields:
 
 ## Role used in documents
 
-**Full Stack Engineer Intern** (Full Stack) — matches shipped BharatMart web work.
+**Full Stack Engineer Intern** (Full Stack) - matches shipped BharatMart web work.
 
 ## After generate
 

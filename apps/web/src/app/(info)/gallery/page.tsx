@@ -17,7 +17,7 @@ export default function GalleryPage() {
           Our Gallery
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#514534] md:text-lg">
-          Ganesh idols and festival moments from our collection — browse designs, sizes and styles.
+          Ganesh idols and festival moments from our collection - browse designs, sizes and styles.
         </p>
       </section>
 

@@ -336,7 +336,7 @@ function BannerFields({
           accept="image/*"
         />
         <p className="text-xs text-[#837561]">
-          After choosing a file, wait until the Image URL field fills and a preview appears — then
+          After choosing a file, wait until the Image URL field fills and a preview appears - then
           click Add to carousel.
         </p>
         {form.imageUrl ? (

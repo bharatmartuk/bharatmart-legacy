@@ -16,7 +16,7 @@ if (process.env.DIRECT_URL) process.env.DATABASE_URL = process.env.DIRECT_URL
 
 const prisma = new PrismaClient()
 
-const EM = '—'
+const EM = '-'
 const EN = '–'
 
 function hasDash(value: string | null | undefined): value is string {

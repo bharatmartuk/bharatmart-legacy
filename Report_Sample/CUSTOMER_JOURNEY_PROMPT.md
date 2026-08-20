@@ -18,7 +18,7 @@ Then in `main.tex`, replace the reserved `\fbox{...}` for Figure~\ref{fig:journe
 Create ONE clean academic flowchart image for a B.Tech internship report.
 
 Title (top centre):
-"BharatMart UK — Customer Journey"
+"BharatMart UK - Customer Journey"
 
 Purpose:
 Show the customer path from landing on the marketplace to placing an order.

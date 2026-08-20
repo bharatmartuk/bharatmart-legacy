@@ -13,7 +13,7 @@ type CredentialsLoginFormProps = {
   title: string
   subtitle: string
   defaultRedirect?: string
-  /** Existing CUSTOMER session — stay on login; never auto-open registration. */
+  /** Existing CUSTOMER session - stay on login; never auto-open registration. */
   isCustomerSession?: boolean
 }
 

@@ -15,33 +15,33 @@ Then recompile `main.tex`. Figure caption in the report:
 ```text
 Create ONE clean, academic system-architecture diagram for an internship report.
 
-Project: BharatMart UK — Multi-Merchant Grocery Marketplace
+Project: BharatMart UK - Multi-Merchant Grocery Marketplace
 Style: professional technical diagram for a B.Tech internship report (like IEEE/college report figures). White or very light cream background (#FFF8F0). No purple gradients, no neon, no 3D glassmorphism, no cluttered icons. Use thin dark borders, clear labels, and BharatMart brand accents sparingly (deep brown-gold #7F5700, terracotta #A83635, deep green #2E6A39).
 
 LAYOUT (top → bottom, left → right):
 
 TITLE (top centre):
-"BharatMart UK — System Architecture"
+"BharatMart UK - System Architecture"
 
-ROW 1 — CLIENT APPS (three equal boxes side by side):
-1) apps/web — Customer Storefront
+ROW 1 - CLIENT APPS (three equal boxes side by side):
+1) apps/web - Customer Storefront
    bullets: Browse / Search / Postcode gate / Cart / Wishlist / Checkout
-2) apps/merchant — Merchant Portal
+2) apps/merchant - Merchant Portal
    bullets: Onboarding / Products / Orders / Store settings
-3) apps/admin — Admin Console
+3) apps/admin - Admin Console
    bullets: Verification / Banners CMS / Categories / Orders
 
-ROW 2 — SHARED PACKAGES (one wide horizontal band with 6 small boxes):
+ROW 2 - SHARED PACKAGES (one wide horizontal band with 6 small boxes):
 @bharatmart/auth | @bharatmart/services | @bharatmart/database |
 @bharatmart/ui | @bharatmart/validation | @bharatmart/utils
 
 Label this band: "Shared Monorepo Packages (pnpm + Turborepo)"
 
-ROW 3 — DOMAIN / APPLICATION LAYER (one box):
+ROW 3 - DOMAIN / APPLICATION LAYER (one box):
 "Domain Services + Repositories (server-only)"
 sub-bullets: Product, Merchant, Order, Payment, Category, Review, Banner
 
-ROW 4 — DATA & EXTERNAL SERVICES (five boxes in a row):
+ROW 4 - DATA & EXTERNAL SERVICES (five boxes in a row):
 1) PostgreSQL (Prisma ORM)
 2) Cloudinary (images & documents)
 3) Stripe (PaymentIntents + webhooks)
@@ -80,7 +80,7 @@ flowchart TB
     ADM["apps/admin<br/>Admin Console<br/>Verify · Banners · Categories"]
   end
 
-  subgraph Shared["Shared Packages — pnpm / Turborepo"]
+  subgraph Shared["Shared Packages - pnpm / Turborepo"]
     AUTH["auth"]
     SVC["services"]
     DB["database"]
