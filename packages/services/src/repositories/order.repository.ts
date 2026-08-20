@@ -1,6 +1,7 @@
 import 'server-only'
 
 import { Prisma, prisma } from '@bharatmart/database'
+import { effectiveUnitPriceInPence } from '@bharatmart/utils'
 
 export type PlaceOrderItemInput = {
   productId: string
@@ -81,6 +82,7 @@ export const orderRepository = {
   async createPendingOrder(input: PlaceOrderInput | PlaceGuestOrderInput) {
     const products = await prisma.product.findMany({
       where: { id: { in: input.items.map((item) => item.productId) }, status: 'ACTIVE' },
+      include: { category: { select: { slug: true } } },
     })
 
     if (products.length !== input.items.length) {
@@ -88,6 +90,16 @@ export const orderRepository = {
     }
 
     const productMap = new Map(products.map((product) => [product.id, product]))
+    const catalog = new Map(
+      products.map((product) => [
+        product.id,
+        {
+          slug: product.slug,
+          categorySlug: product.category.slug,
+          priceInPence: product.priceInPence,
+        },
+      ]),
+    )
     let subtotalInPence = 0
 
     for (const item of input.items) {
@@ -96,7 +108,8 @@ export const orderRepository = {
       if (product.stockQuantity < item.quantity) {
         throw new Error(`Insufficient stock for ${product.name}.`)
       }
-      subtotalInPence += product.priceInPence * item.quantity
+      const unitPrice = effectiveUnitPriceInPence(product, input.items, catalog)
+      subtotalInPence += unitPrice * item.quantity
     }
 
     const deliveryFeeInPence = input.deliveryFeeInPence ?? 0
@@ -216,8 +229,19 @@ export const orderRepository = {
 
     const products = await prisma.product.findMany({
       where: { id: { in: cartItems.map((item) => item.productId) } },
+      include: { category: { select: { slug: true } } },
     })
     const productMap = new Map(products.map((product) => [product.id, product]))
+    const catalog = new Map(
+      products.map((product) => [
+        product.id,
+        {
+          slug: product.slug,
+          categorySlug: product.category.slug,
+          priceInPence: product.priceInPence,
+        },
+      ]),
+    )
     const groups = new Map<
       string,
       Array<{
@@ -235,7 +259,7 @@ export const orderRepository = {
       existingGroup.push({
         productId: product.id,
         productNameSnapshot: product.name,
-        priceInPenceSnapshot: product.priceInPence,
+        priceInPenceSnapshot: effectiveUnitPriceInPence(product, cartItems, catalog),
         quantity: item.quantity,
       })
       groups.set(product.merchantId, existingGroup)

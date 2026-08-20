@@ -45,6 +45,7 @@ export function ProductCard({ product }: { product: ProductSummary }) {
             stockQuantity: product.stockQuantity,
             merchantId: product.merchantId,
             merchantName: product.merchantName,
+            categorySlug: product.categorySlug,
           }}
         />
         {product.reviewCount > 0 ? (
@@ -76,6 +77,7 @@ export function ProductCard({ product }: { product: ProductSummary }) {
               stockQuantity: product.stockQuantity,
               merchantId: product.merchantId,
               merchantName: product.merchantName,
+              categorySlug: product.categorySlug,
             }}
           />
         </div>

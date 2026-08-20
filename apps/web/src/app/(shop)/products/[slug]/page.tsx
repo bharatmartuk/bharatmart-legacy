@@ -47,6 +47,7 @@ export default async function ProductDetailPage({
     stockQuantity: product.stockQuantity,
     merchantId: product.merchantId,
     merchantName: product.merchant.storeName,
+    categorySlug: product.category.slug,
   }
 
   return (

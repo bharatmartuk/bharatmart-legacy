@@ -17,6 +17,7 @@
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
     "db:seed-rakhis": "tsx prisma/seed-rakhis.ts",
+    "db:seed-roli-kit": "tsx prisma/seed-roli-kit.ts",
     "db:organize-rakhi-folders": "tsx prisma/organize-rakhi-folders.ts",
     "db:migrate-product-images": "tsx prisma/migrate-product-images-to-cloudinary.ts",
     "db:replace-new-product-images": "tsx prisma/replace-new-product-images.ts",

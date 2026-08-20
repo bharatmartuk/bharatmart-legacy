@@ -546,6 +546,19 @@ const baseProducts: SeedProduct[] = [
   },
 
   // Rakhi products are loaded from Rakhis/ + prices.txt via loadRakhiSeedCatalog().
+  // Ritual pack sold with rakhis (free when cart has 10+ rakhis).
+  {
+    merchantSlug: 'festival-lights-emporium',
+    categorySlug: 'rakhi',
+    name: 'Roli Chawal Haldi Kumkum Pack',
+    slug: 'roli-chawal-haldi-kumkum-pack',
+    description:
+      'Traditional roli, chawal, haldi and kumkum pack for Raksha Bandhan tilak - usually bought with rakhis. Free when you buy 10 or more rakhis; otherwise £2.',
+    priceInPence: 200,
+    stockQuantity: 500,
+    sku: 'FLE-RKH-KIT-001',
+    isFeatured: true,
+  },
 
   // Indian Clothing
   {

@@ -13,6 +13,7 @@ export interface CartItem {
   stockQuantity: number
   merchantId: string
   merchantName: string
+  categorySlug?: string
 }
 
 interface CartState {

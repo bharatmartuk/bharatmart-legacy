@@ -33,6 +33,11 @@ import {
   GuestDetailsForm,
   type GuestDetailsFormValues,
 } from '@/components/checkout/GuestDetailsForm'
+import {
+  RakhiKitUpsell,
+  type RakhiKitProduct,
+} from '@/components/checkout/RakhiKitUpsell'
+import { effectiveUnitPriceInPence } from '@bharatmart/utils'
 
 type AddressOption = {
   id: string
@@ -79,13 +84,34 @@ const paymentOptions: Array<{
   },
 ]
 
+function buildCartCatalog(items: CartItem[]) {
+  return new Map(
+    items.map((item) => [
+      item.productId,
+      {
+        slug: item.slug,
+        categorySlug: item.categorySlug ?? null,
+        priceInPence: item.priceInPence,
+      },
+    ]),
+  )
+}
+
+function lineTotalInPence(item: CartItem, items: CartItem[]) {
+  const unit = effectiveUnitPriceInPence(item, items, buildCartCatalog(items))
+  return unit * item.quantity
+}
+
 function OrderLines({ items }: { items: CartItem[] }) {
   const [previewItem, setPreviewItem] = useState<CartItem | null>(null)
 
   return (
     <>
       <ul className="space-y-3">
-        {items.map((item) => (
+        {items.map((item) => {
+          const unit = effectiveUnitPriceInPence(item, items, buildCartCatalog(items))
+          const lineTotal = unit * item.quantity
+          return (
           <li
             className="flex items-center gap-3 rounded-xl border border-[#d6c4ad] bg-white p-3"
             key={item.productId}
@@ -110,9 +136,19 @@ function OrderLines({ items }: { items: CartItem[] }) {
               <p className="truncate font-medium text-[#1e1b16]">{item.name}</p>
               <p className="mt-0.5 text-xs text-[#837561]">
                 Sold by {item.merchantName} · Qty {item.quantity}
+                {unit === 0 ? ' · Free with 10+ rakhis' : null}
               </p>
               <p className="mt-1 text-sm font-semibold text-[#a83635]">
-                {priceFormatter.format((item.priceInPence * item.quantity) / 100)}
+                {unit === 0 && item.priceInPence > 0 ? (
+                  <>
+                    <span className="mr-2 text-[#837561] line-through">
+                      {priceFormatter.format((item.priceInPence * item.quantity) / 100)}
+                    </span>
+                    Free
+                  </>
+                ) : (
+                  priceFormatter.format(lineTotal / 100)
+                )}
               </p>
             </div>
             <Button
@@ -126,7 +162,8 @@ function OrderLines({ items }: { items: CartItem[] }) {
               Preview
             </Button>
           </li>
-        ))}
+          )
+        })}
       </ul>
 
       <Dialog
@@ -162,9 +199,7 @@ function OrderLines({ items }: { items: CartItem[] }) {
               </div>
               <div className="flex items-center justify-between gap-3">
                 <p className="text-lg font-bold text-[#a83635]">
-                  {priceFormatter.format(
-                    (previewItem.priceInPence * previewItem.quantity) / 100,
-                  )}
+                  {priceFormatter.format(lineTotalInPence(previewItem, items) / 100)}
                 </p>
                 <Button asChild className="bg-[#7f5700] text-white hover:bg-[#604100]">
                   <Link href={`/products/${previewItem.slug}`} target="_blank">
@@ -246,9 +281,11 @@ function StripePayButton({
 export function CheckoutClient({
   addresses,
   isAuthenticated,
+  rakhiKit = null,
 }: {
   addresses: AddressOption[]
   isAuthenticated: boolean
+  rakhiKit?: RakhiKitProduct | null
 }) {
   const router = useRouter()
   const items = useCartStore((state) => state.items)
@@ -268,7 +305,7 @@ export function CheckoutClient({
   const [isPending, startTransition] = useTransition()
 
   const subtotalInPence = useMemo(
-    () => items.reduce((total, item) => total + item.priceInPence * item.quantity, 0),
+    () => items.reduce((total, item) => total + lineTotalInPence(item, items), 0),
     [items],
   )
 
@@ -727,6 +764,7 @@ export function CheckoutClient({
               ) : null}
 
               <OrderLines items={items} />
+              {rakhiKit ? <RakhiKitUpsell kit={rakhiKit} /> : null}
               {error ? <p className="text-sm text-[#a83635]">{error}</p> : null}
 
               <div className="flex flex-wrap gap-3">
@@ -793,6 +831,7 @@ export function CheckoutClient({
             <CardTitle>Summary</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2 text-sm">
+            {rakhiKit ? <div className="pb-2"><RakhiKitUpsell kit={rakhiKit} /></div> : null}
             <div className="flex justify-between">
               <span>Items</span>
               <span>{items.reduce((n, item) => n + item.quantity, 0)}</span>
