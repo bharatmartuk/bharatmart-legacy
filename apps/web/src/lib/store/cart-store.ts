@@ -13,7 +13,7 @@ export interface CartItem {
   stockQuantity: number
   merchantId: string
   merchantName: string
-  categorySlug?: string
+  categorySlug?: string | undefined
 }
 
 interface CartState {

@@ -17,14 +17,14 @@ export function isRakhiKitSlug(slug: string) {
 
 export function isRakhiCartLine(item: {
   slug: string
-  categorySlug?: string | null
+  categorySlug?: string | null | undefined
 }) {
   if (isRakhiKitSlug(item.slug)) return false
   return item.categorySlug === RAKHI_CATEGORY_SLUG
 }
 
 export function countRakhiQuantity(
-  items: Array<{ slug: string; categorySlug?: string | null; quantity: number }>,
+  items: Array<{ slug: string; categorySlug?: string | null | undefined; quantity: number }>,
 ) {
   return items.reduce(
     (sum, item) => (isRakhiCartLine(item) ? sum + item.quantity : sum),
@@ -41,11 +41,11 @@ export function rakhiKitUnitPriceInPence(rakhiQuantity: number) {
  * `catalog` supplies slug + category for each productId (server uses DB; client uses cart).
  */
 export function effectiveUnitPriceInPence(
-  product: { id: string; slug: string; priceInPence: number },
+  product: { slug: string; priceInPence: number },
   cartItems: Array<{ productId: string; quantity: number }>,
   catalog: Map<
     string,
-    { slug: string; categorySlug?: string | null; priceInPence: number }
+    { slug: string; categorySlug?: string | null | undefined; priceInPence: number }
   >,
 ) {
   if (!isRakhiKitSlug(product.slug)) return product.priceInPence

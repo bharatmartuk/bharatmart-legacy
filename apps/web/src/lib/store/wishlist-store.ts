@@ -12,6 +12,7 @@ export interface WishlistItem {
   stockQuantity: number
   merchantId: string
   merchantName: string
+  categorySlug?: string | undefined
 }
 
 interface WishlistState {
