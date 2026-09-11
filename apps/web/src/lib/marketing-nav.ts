@@ -50,6 +50,13 @@ export const SEASONAL_CTAS = [
     accent: '#C2185B',
   },
   {
+    title: 'Ganesh',
+    description: 'Previous-year Ganesh idols and designs ready for cart.',
+    href: '/products?category=ganesh',
+    image: '/gallery/01.jpg',
+    accent: '#6A1B9A',
+  },
+  {
     title: 'Diwali',
     description: 'Diyas, pooja kits, rangoli and festive decor.',
     href: '/diwali',

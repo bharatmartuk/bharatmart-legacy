@@ -159,14 +159,19 @@ async function main() {
       },
     })
 
-    const publicDir = path.join(REPO_ROOT, 'apps', 'web', 'public', 'seasonal', 'ganesh')
-    await mkdir(publicDir, { recursive: true })
+    const finalUrls =
+      product.publicImageUrls && product.publicImageUrls.length > 0
+        ? [...product.publicImageUrls]
+        : []
 
-    const finalUrls: string[] = []
-    for (const localPath of product.localImagePaths) {
-      const fileName = basename(localPath)
-      await copyFile(localPath, path.join(publicDir, fileName))
-      finalUrls.push(`/seasonal/ganesh/${fileName}`)
+    if (finalUrls.length === 0) {
+      const publicDir = path.join(REPO_ROOT, 'apps', 'web', 'public', 'seasonal', 'ganesh')
+      await mkdir(publicDir, { recursive: true })
+      for (const localPath of product.localImagePaths) {
+        const fileName = basename(localPath)
+        await copyFile(localPath, path.join(publicDir, fileName))
+        finalUrls.push(`/seasonal/ganesh/${fileName}`)
+      }
     }
 
     const seededImageIds: string[] = []

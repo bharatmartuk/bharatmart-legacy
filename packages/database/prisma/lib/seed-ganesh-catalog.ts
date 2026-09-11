@@ -1,4 +1,4 @@
-import { existsSync } from 'node:fs'
+import { existsSync, readdirSync } from 'node:fs'
 import path from 'node:path'
 
 export type GaneshSeedProduct = {
@@ -12,14 +12,16 @@ export type GaneshSeedProduct = {
   sku: string
   isFeatured?: boolean
   localImagePaths: string[]
+  /** Prefer these public URLs when set (e.g. /gallery/01.jpg). */
+  publicImageUrls?: string[]
 }
 
 /**
- * Previous-year Ganesh idol SKUs + prices from the legacy HTML site
+ * Sized idol SKUs + prices from the legacy HTML site
  * (suryaraj05/bharatmart prebook.html showInfoModal entries).
  * Range prices use the lower bound for cart; full range is in the description.
  */
-const GANESH_PRODUCTS = [
+const GANESH_SIZE_PRODUCTS = [
   {
     name: 'Eco-Friendly Ganesh Small (6\' - 8\')',
     slug: 'eco-friendly-ganesh-small',
@@ -88,6 +90,10 @@ const GANESH_PRODUCTS = [
   },
 ] as const
 
+/** Previous-year gallery designs: cart price uses Normal/Eco small lower bound from prebook.html. */
+const GALLERY_GUIDE_PRICE_PENCE = 1800
+const GALLERY_PRICE_NOTE = '£18 - £25 (small idol guide from previous season)'
+
 function resolveLegacyImgRoot(repoRoot: string) {
   const candidates = [
     path.join(repoRoot, 'Ganesh'),
@@ -112,10 +118,10 @@ function resolveLegacyImgRoot(repoRoot: string) {
   )
 }
 
-export function loadGaneshSeedCatalog(repoRoot: string): GaneshSeedProduct[] {
+function loadSizedProducts(repoRoot: string): GaneshSeedProduct[] {
   const imgRoot = resolveLegacyImgRoot(repoRoot)
 
-  return GANESH_PRODUCTS.map((product) => {
+  return GANESH_SIZE_PRODUCTS.map((product) => {
     const localPath = path.join(imgRoot, product.image)
     if (!existsSync(localPath)) {
       throw new Error(`Missing Ganesh image: ${localPath}`)
@@ -134,4 +140,40 @@ export function loadGaneshSeedCatalog(repoRoot: string): GaneshSeedProduct[] {
       localImagePaths: [localPath],
     }
   })
+}
+
+function loadGalleryProducts(repoRoot: string): GaneshSeedProduct[] {
+  const galleryDir = path.join(repoRoot, 'apps', 'web', 'public', 'gallery')
+  if (!existsSync(galleryDir)) {
+    console.warn(`Gallery folder missing at ${galleryDir} — skipping gallery Ganesh products.`)
+    return []
+  }
+
+  const files = readdirSync(galleryDir)
+    .filter((name) => /^\d{2}\.jpe?g$/i.test(name))
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+
+  return files.map((fileName, index) => {
+    const n = fileName.replace(/\.(jpe?g)$/i, '')
+    const localPath = path.join(galleryDir, fileName)
+    const skuNumber = String(index + 101).padStart(3, '0')
+
+    return {
+      merchantSlug: 'festival-lights-emporium',
+      categorySlug: 'ganesh',
+      name: `Ganesh Design ${n}`,
+      slug: `ganesh-design-${n}`,
+      description: `Previous-year Ganesh idol design from our collection gallery. Guide price ${GALLERY_PRICE_NOTE}. Cart price from £${(GALLERY_GUIDE_PRICE_PENCE / 100).toFixed(2)} — confirm size/finish at checkout enquiry if needed.`,
+      priceInPence: GALLERY_GUIDE_PRICE_PENCE,
+      stockQuantity: 5,
+      sku: `FLE-GNH-${skuNumber}`,
+      isFeatured: index < 4,
+      localImagePaths: [localPath],
+      publicImageUrls: [`/gallery/${fileName}`],
+    }
+  })
+}
+
+export function loadGaneshSeedCatalog(repoRoot: string): GaneshSeedProduct[] {
+  return [...loadSizedProducts(repoRoot), ...loadGalleryProducts(repoRoot)]
 }
