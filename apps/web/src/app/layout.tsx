@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Inter, Montserrat } from 'next/font/google'
 import { Toaster } from '@bharatmart/ui'
 import { AuthSessionProvider } from '@/components/auth-session-provider'
-import { PageLoader } from '@/components/layout/PageLoader'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -42,7 +41,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="font-sans antialiased" suppressHydrationWarning>
         <AuthSessionProvider>
-          <PageLoader />
           {children}
           <Toaster closeButton position="top-right" richColors />
         </AuthSessionProvider>
