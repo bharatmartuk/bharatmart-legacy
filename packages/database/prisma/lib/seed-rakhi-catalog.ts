@@ -59,13 +59,9 @@ function slugify(name: string) {
   return base || 'rakhi-product'
 }
 
-/** Deterministic stock in [min, max] so re-seeds stay stable. */
-function stockForSlug(slug: string, min = 8, max = 12) {
-  let hash = 0
-  for (let i = 0; i < slug.length; i += 1) {
-    hash = (hash * 31 + slug.charCodeAt(i)) >>> 0
-  }
-  return min + (hash % (max - min + 1))
+/** Rakhi season closed — always seed as out of stock. */
+function stockForSlug(_slug: string) {
+  return 0
 }
 
 function parsePrices(pricesPath: string): PriceEntry[] {
@@ -191,7 +187,8 @@ export function loadRakhiSeedCatalog(repoRoot: string): RakhiSeedProduct[] {
       slug,
       description: buildDescription(folderName, price.note),
       priceInPence: Math.round(price.pounds * 100),
-      stockQuantity: price.stock ?? stockForSlug(slug),
+      // Ignore prices.txt stock notes — keep the whole rakhi catalog OOS.
+      stockQuantity: stockForSlug(slug),
       sku: `FLE-RKH-${skuNumber}`,
       isFeatured: isFeatured(price.pounds, folderName),
       localImagePaths,

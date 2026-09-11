@@ -37,7 +37,7 @@ async function main() {
       description:
         'Traditional roli, chawal, haldi and kumkum pack for Raksha Bandhan tilak - usually bought with rakhis. Free when you buy 10 or more rakhis; otherwise £2.',
       priceInPence: KIT_PRICE_PENCE,
-      stockQuantity: 500,
+      stockQuantity: 0,
       status: ProductStatus.ACTIVE,
       isFeatured: true,
       categoryId: category.id,
@@ -50,7 +50,7 @@ async function main() {
       description:
         'Traditional roli, chawal, haldi and kumkum pack for Raksha Bandhan tilak - usually bought with rakhis. Free when you buy 10 or more rakhis; otherwise £2.',
       priceInPence: KIT_PRICE_PENCE,
-      stockQuantity: 500,
+      stockQuantity: 0,
       status: ProductStatus.ACTIVE,
       isFeatured: true,
       categoryId: category.id,

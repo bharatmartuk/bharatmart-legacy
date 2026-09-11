@@ -26,6 +26,7 @@ export const MARKETING_NAV: MarketingNavItem[] = [
     children: [
       { label: 'Rakhi', href: '/products?category=rakhi' },
       { label: 'Diwali', href: '/diwali' },
+      { label: 'Ganesh', href: '/products?category=ganesh' },
     ],
   },
   {

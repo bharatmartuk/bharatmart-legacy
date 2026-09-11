@@ -21,6 +21,7 @@ const SLUG_ICON_MAP: Record<string, CategoryIconKey> = {
   'indian-groceries': 'wheat',
   rakhi: 'sparkles',
   diwali: 'sparkles',
+  ganesh: 'sparkles',
   mangoes: 'leaf',
   rice: 'wheat',
   'seasonal-stuff': 'package',

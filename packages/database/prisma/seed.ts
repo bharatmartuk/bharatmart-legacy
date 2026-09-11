@@ -63,6 +63,7 @@ const categories = [
     children: [
       { name: 'Rakhi', slug: 'rakhi', sortOrder: 1 },
       { name: 'Diwali', slug: 'diwali', sortOrder: 2 },
+      { name: 'Ganesh', slug: 'ganesh', sortOrder: 3 },
     ],
   },
   {
@@ -555,7 +556,7 @@ const baseProducts: SeedProduct[] = [
     description:
       'Traditional roli, chawal, haldi and kumkum pack for Raksha Bandhan tilak - usually bought with rakhis. Free when you buy 10 or more rakhis; otherwise £2.',
     priceInPence: 200,
-    stockQuantity: 500,
+    stockQuantity: 0,
     sku: 'FLE-RKH-KIT-001',
     isFeatured: true,
   },

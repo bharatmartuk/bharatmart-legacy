@@ -22,6 +22,7 @@ environment
 # Product images / merchant logos are stored in Cloudinary; only URLs live in the database.
 assets/
 Rakhis/
+/Ganesh/
 apps/web/public/seed/
 stitch_bharatmart_uk_design_system/
 environment
