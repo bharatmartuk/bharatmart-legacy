@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { Search, X } from 'lucide-react'
 import { Input } from '@bharatmart/ui'
 import { cn } from '@bharatmart/utils'
+import { shouldHideListedPrice } from '@/lib/product-pricing'
 
 type SuggestItem = {
   id: string
@@ -15,6 +16,7 @@ type SuggestItem = {
   imageUrl: string | null
   merchantName: string
   categoryName: string
+  categorySlug?: string
 }
 
 const priceFormatter = new Intl.NumberFormat('en-GB', {
@@ -233,7 +235,9 @@ export function HeaderSearch({
                       </p>
                     </div>
                     <span className="shrink-0 text-sm font-semibold text-[#a83635]">
-                      {priceFormatter.format(item.priceInPence / 100)}
+                      {shouldHideListedPrice(item.categorySlug)
+                        ? 'On request'
+                        : priceFormatter.format(item.priceInPence / 100)}
                     </span>
                   </button>
                 </li>

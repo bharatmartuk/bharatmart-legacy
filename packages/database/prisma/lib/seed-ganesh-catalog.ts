@@ -132,7 +132,7 @@ function loadSizedProducts(repoRoot: string): GaneshSeedProduct[] {
       categorySlug: 'ganesh',
       name: product.name,
       slug: product.slug,
-      description: `${product.blurb} Previous-year reference design. Guide price ${product.priceNote} (cart uses from £${(product.priceInPence / 100).toFixed(2)}). Currently out of stock.`,
+      description: `${product.blurb} Previous-year reference design. Currently out of stock — contact us for current pricing.`,
       priceInPence: product.priceInPence,
       stockQuantity: 0,
       sku: product.sku,
@@ -163,7 +163,8 @@ function loadGalleryProducts(repoRoot: string): GaneshSeedProduct[] {
       categorySlug: 'ganesh',
       name: `Ganesh Design ${n}`,
       slug: `ganesh-design-${n}`,
-      description: `Previous-year Ganesh idol design from our collection gallery. Guide price ${GALLERY_PRICE_NOTE}. Cart price from £${(GALLERY_GUIDE_PRICE_PENCE / 100).toFixed(2)} — currently out of stock.`,
+      description:
+        'Previous-year Ganesh idol design from our collection gallery. Currently out of stock — contact us for current pricing.',
       priceInPence: GALLERY_GUIDE_PRICE_PENCE,
       stockQuantity: 0,
       sku: `FLE-GNH-${skuNumber}`,

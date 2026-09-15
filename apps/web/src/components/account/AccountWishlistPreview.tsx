@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Heart } from 'lucide-react'
 import { Button, Card, CardContent, CardHeader, CardTitle } from '@bharatmart/ui'
 import { useWishlistStore } from '@/lib/store/wishlist-store'
+import { shouldHideListedPrice } from '@/lib/product-pricing'
 
 const priceFormatter = new Intl.NumberFormat('en-GB', {
   style: 'currency',
@@ -69,7 +70,9 @@ export function AccountWishlistPreview() {
                 <div className="space-y-1 p-3">
                   <p className="line-clamp-2 text-sm font-semibold text-[#1e1b16]">{item.name}</p>
                   <p className="text-sm font-bold text-[#a83635]">
-                    {priceFormatter.format(item.priceInPence / 100)}
+                    {shouldHideListedPrice(item.categorySlug)
+                      ? 'Price on request'
+                      : priceFormatter.format(item.priceInPence / 100)}
                   </p>
                 </div>
               </Link>

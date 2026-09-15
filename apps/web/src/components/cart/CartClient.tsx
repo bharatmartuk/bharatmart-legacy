@@ -7,6 +7,7 @@ import { Minus, Plus, Trash2 } from 'lucide-react'
 import { Button, Card, CardContent, CardHeader, CardTitle, Input, Separator, toast } from '@bharatmart/ui'
 import { useCartStore } from '@/lib/store/cart-store'
 import { validateCoupon } from '@/app/(shop)/cart/actions'
+import { shouldHideListedPrice } from '@/lib/product-pricing'
 
 const priceFormatter = new Intl.NumberFormat('en-GB', {
   style: 'currency',
@@ -122,7 +123,9 @@ export function CartClient() {
                         {item.name}
                       </Link>
                       <p className="mt-1 font-bold text-[#a83635]">
-                        {priceFormatter.format(item.priceInPence / 100)}
+                        {shouldHideListedPrice(item.categorySlug)
+                          ? 'Price on request'
+                          : priceFormatter.format(item.priceInPence / 100)}
                       </p>
                       <div className="mt-3 flex flex-wrap items-center gap-3">
                         <div className="inline-flex items-center rounded-lg border border-[#d6c4ad]">

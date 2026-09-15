@@ -38,6 +38,7 @@ import {
   type RakhiKitProduct,
 } from '@/components/checkout/RakhiKitUpsell'
 import { effectiveUnitPriceInPence } from '@bharatmart/utils'
+import { shouldHideListedPrice } from '@/lib/product-pricing'
 
 type AddressOption = {
   id: string
@@ -139,7 +140,9 @@ function OrderLines({ items }: { items: CartItem[] }) {
                 {unit === 0 ? ' · Free with 10+ rakhis' : null}
               </p>
               <p className="mt-1 text-sm font-semibold text-[#a83635]">
-                {unit === 0 && item.priceInPence > 0 ? (
+                {shouldHideListedPrice(item.categorySlug) ? (
+                  'Price on request'
+                ) : unit === 0 && item.priceInPence > 0 ? (
                   <>
                     <span className="mr-2 text-[#837561] line-through">
                       {priceFormatter.format((item.priceInPence * item.quantity) / 100)}

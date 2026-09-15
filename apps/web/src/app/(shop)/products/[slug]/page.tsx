@@ -8,6 +8,7 @@ import { MerchantLogo } from '@/components/merchant/MerchantLogo'
 import { FavoriteButton } from '@/components/product/FavoriteButton'
 import { ProductImageGallery } from '@/components/product/ProductImageGallery'
 import { RelatedProducts } from '@/components/product/RelatedProducts'
+import { shouldHideListedPrice } from '@/lib/product-pricing'
 
 export const dynamic = 'force-dynamic'
 
@@ -103,9 +104,13 @@ export default async function ProductDetailPage({
             </div>
           </div>
 
-          <p className="text-3xl font-bold text-[#a83635]">
-            {priceFormatter.format(product.priceInPence / 100)}
-          </p>
+          {shouldHideListedPrice(product.category.slug) ? (
+            <p className="text-xl font-semibold text-[#837561]">Price on request</p>
+          ) : (
+            <p className="text-3xl font-bold text-[#a83635]">
+              {priceFormatter.format(product.priceInPence / 100)}
+            </p>
+          )}
 
           <p className="leading-7 text-[#514534]">{product.description}</p>
 

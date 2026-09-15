@@ -5,6 +5,7 @@ import { Badge, Card, CardContent } from '@bharatmart/ui'
 import type { ProductSummary } from '@bharatmart/services'
 import { AddToCartButton } from '@/components/cart/AddToCartButton'
 import { FavoriteButton } from '@/components/product/FavoriteButton'
+import { shouldHideListedPrice } from '@/lib/product-pricing'
 
 const priceFormatter = new Intl.NumberFormat('en-GB', {
   style: 'currency',
@@ -12,6 +13,8 @@ const priceFormatter = new Intl.NumberFormat('en-GB', {
 })
 
 export function ProductCard({ product }: { product: ProductSummary }) {
+  const hidePrice = shouldHideListedPrice(product.categorySlug)
+
   return (
     <Card className="group overflow-hidden border-[#d6c4ad] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(46,21,21,0.08)]">
       <div className="relative aspect-square overflow-hidden bg-[#f9f3ea]">
@@ -63,9 +66,13 @@ export function ProductCard({ product }: { product: ProductSummary }) {
           </h3>
         </Link>
         <div className="mt-4 flex items-center justify-between gap-2">
-          <span className="font-bold text-[#a83635]">
-            {priceFormatter.format(product.priceInPence / 100)}
-          </span>
+          {hidePrice ? (
+            <span className="text-sm font-medium text-[#837561]">Price on request</span>
+          ) : (
+            <span className="font-bold text-[#a83635]">
+              {priceFormatter.format(product.priceInPence / 100)}
+            </span>
+          )}
           <AddToCartButton
             className="bg-[#2e6a39] text-white hover:bg-[#135224]"
             item={{

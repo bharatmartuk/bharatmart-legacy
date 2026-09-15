@@ -6,6 +6,7 @@ import { Trash2 } from 'lucide-react'
 import { Button, Card, CardContent, toast } from '@bharatmart/ui'
 import { AddToCartButton } from '@/components/cart/AddToCartButton'
 import { useWishlistStore } from '@/lib/store/wishlist-store'
+import { shouldHideListedPrice } from '@/lib/product-pricing'
 
 const priceFormatter = new Intl.NumberFormat('en-GB', {
   style: 'currency',
@@ -70,9 +71,13 @@ export function WishlistPageClient() {
                 {item.name}
               </Link>
               <div className="flex items-center justify-between gap-2">
-                <span className="font-bold text-[#a83635]">
-                  {priceFormatter.format(item.priceInPence / 100)}
-                </span>
+                {shouldHideListedPrice(item.categorySlug) ? (
+                  <span className="text-sm font-medium text-[#837561]">Price on request</span>
+                ) : (
+                  <span className="font-bold text-[#a83635]">
+                    {priceFormatter.format(item.priceInPence / 100)}
+                  </span>
+                )}
                 <AddToCartButton
                   className="bg-[#2e6a39] text-white hover:bg-[#135224]"
                   item={{
@@ -84,6 +89,7 @@ export function WishlistPageClient() {
                     stockQuantity: item.stockQuantity ?? 99,
                     merchantId: item.merchantId,
                     merchantName: item.merchantName,
+                    categorySlug: item.categorySlug,
                   }}
                 />
               </div>

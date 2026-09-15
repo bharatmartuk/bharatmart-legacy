@@ -18,7 +18,7 @@ const SELECT = {
   stockQuantity: true,
   images: { orderBy: { sortOrder: 'asc' as const }, take: 1, select: { url: true } },
   merchant: { select: { storeName: true } },
-  category: { select: { name: true } },
+  category: { select: { name: true, slug: true } },
 } as const
 
 export async function GET(request: Request) {
@@ -54,6 +54,7 @@ export async function GET(request: Request) {
     imageUrl: product.images[0]?.url ?? null,
     merchantName: product.merchant.storeName,
     categoryName: product.category.name,
+    categorySlug: product.category.slug,
   }))
 
   const items = q
