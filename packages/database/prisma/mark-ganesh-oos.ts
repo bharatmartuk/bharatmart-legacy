@@ -51,6 +51,7 @@ async function main() {
     })
     console.log(`Marked ${diwaliStock.count} diwali product(s) out of stock.`)
   }
+}
 
 main()
   .catch((error) => {
