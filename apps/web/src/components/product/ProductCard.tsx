@@ -16,7 +16,7 @@ export function ProductCard({ product }: { product: ProductSummary }) {
   const hidePrice = shouldHideListedPrice(product.categorySlug)
 
   return (
-    <Card className="group overflow-hidden border-[#d6c4ad] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(46,21,21,0.08)]">
+    <Card className="group flex h-full flex-col overflow-hidden border-[#d6c4ad] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(46,21,21,0.08)]">
       <div className="relative aspect-square overflow-hidden bg-[#f9f3ea]">
         <Link
           aria-label={`View ${product.name}`}
@@ -38,7 +38,7 @@ export function ProductCard({ product }: { product: ProductSummary }) {
           )}
         </Link>
         <FavoriteButton
-          className="absolute right-3 top-3 z-10"
+          className="absolute right-2 top-2 z-10 scale-90 sm:right-3 sm:top-3 sm:scale-100"
           item={{
             productId: product.id,
             slug: product.slug,
@@ -52,29 +52,31 @@ export function ProductCard({ product }: { product: ProductSummary }) {
           }}
         />
         {product.reviewCount > 0 ? (
-          <Badge className="absolute bottom-3 left-3 border-0 bg-white/90 text-[#514534]">
+          <Badge className="absolute bottom-2 left-2 border-0 bg-white/90 text-[10px] text-[#514534] sm:bottom-3 sm:left-3 sm:text-xs">
             <Star className="mr-1 h-3 w-3 fill-[#e8a317] text-[#e8a317]" />
             {product.avgRating.toFixed(1)}
           </Badge>
         ) : null}
       </div>
-      <CardContent className="p-4">
-        <p className="mb-1 truncate text-xs text-[#837561]">Sold by {product.merchantName}</p>
-        <Link href={`/products/${product.slug}`}>
-          <h3 className="line-clamp-1 font-semibold text-[#1e1b16] hover:text-[#7f5700]">
+      <CardContent className="flex flex-1 flex-col p-2.5 sm:p-4">
+        <p className="mb-0.5 truncate text-[10px] text-[#837561] sm:mb-1 sm:text-xs">
+          {product.merchantName}
+        </p>
+        <Link className="min-h-0 flex-1" href={`/products/${product.slug}`}>
+          <h3 className="line-clamp-2 text-sm font-semibold leading-snug text-[#1e1b16] hover:text-[#7f5700] sm:text-base">
             {product.name}
           </h3>
         </Link>
-        <div className="mt-4 flex items-center justify-between gap-2">
+        <div className="mt-2 flex flex-col gap-2 sm:mt-4 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
           {hidePrice ? (
-            <span className="text-sm font-medium text-[#837561]">Price on request</span>
+            <span className="text-xs font-medium text-[#837561] sm:text-sm">On request</span>
           ) : (
-            <span className="font-bold text-[#a83635]">
+            <span className="text-sm font-bold text-[#a83635] sm:text-base">
               {priceFormatter.format(product.priceInPence / 100)}
             </span>
           )}
           <AddToCartButton
-            className="bg-[#2e6a39] text-white hover:bg-[#135224]"
+            className="h-8 w-full shrink-0 bg-[#2e6a39] px-2 text-[11px] text-white hover:bg-[#135224] sm:h-9 sm:w-auto sm:px-3 sm:text-sm"
             item={{
               productId: product.id,
               slug: product.slug,

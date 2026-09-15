@@ -27,7 +27,14 @@ export function AddToCartButton({ item, className, showIcon = false }: AddToCart
       type="button"
     >
       {showIcon ? <ShoppingBag className="mr-2 h-4 w-4" /> : null}
-      {item.stockQuantity > 0 ? 'Add to Cart' : 'Out of stock'}
+      {item.stockQuantity > 0 ? (
+        'Add to Cart'
+      ) : (
+        <>
+          <span className="sm:hidden">Sold out</span>
+          <span className="hidden sm:inline">Out of stock</span>
+        </>
+      )}
     </Button>
   )
 }
