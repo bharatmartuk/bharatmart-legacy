@@ -24,7 +24,7 @@ export function HeaderAuthNav({ isSignedIn, displayName }: HeaderAuthNavProps) {
       <div className="flex items-center gap-1 md:gap-2">
         <Button
           asChild
-          className="hidden text-[#7f5700] hover:bg-[#efe2cf] hover:text-[#604100] sm:inline-flex"
+          className="hidden text-[#7f5700] hover:bg-[#efe2cf] hover:text-[#604100] md:inline-flex"
           size="sm"
           variant="ghost"
         >
@@ -32,12 +32,13 @@ export function HeaderAuthNav({ isSignedIn, displayName }: HeaderAuthNavProps) {
         </Button>
         <Button
           asChild
-          className="bg-[#7f5700] text-white hover:bg-[#604100]"
+          className="hidden bg-[#7f5700] text-white hover:bg-[#604100] md:inline-flex"
           size="sm"
         >
           <Link href="/register">Sign up</Link>
         </Button>
-        <Button asChild className="sm:hidden" size="icon" title="Sign in" variant="ghost">
+        {/* Mobile: one account icon — Sign in / Sign up live in the hamburger menu */}
+        <Button asChild className="md:hidden" size="icon" title="Account" variant="ghost">
           <Link aria-label="Sign in" href="/login">
             <UserCircle className="h-5 w-5 text-[#7f5700]" />
           </Link>

@@ -18,7 +18,7 @@ export default async function ShopLayout({ children }: { children: React.ReactNo
   const showBanner = location.status !== 'set'
 
   return (
-    <div className="min-h-screen bg-[#fff8f0] text-[#1e1b16]">
+    <div className="min-h-screen max-w-[100vw] overflow-x-clip bg-[#fff8f0] text-[#1e1b16]">
       <DemoCartHydrator />
       <PendingActionHydrator />
       {showGate ? <PostcodeGate openOnMount /> : null}

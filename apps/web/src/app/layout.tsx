@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link href={favicon} rel="shortcut icon" type="image/png" />
         <link href={favicon} rel="apple-touch-icon" />
       </head>
-      <body className="font-sans antialiased" suppressHydrationWarning>
+      <body className="overflow-x-clip font-sans antialiased" suppressHydrationWarning>
         <AuthSessionProvider>
           {children}
           <Toaster closeButton position="top-right" richColors />

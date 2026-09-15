@@ -16,15 +16,15 @@ export async function SiteHeader({ location }: { location?: CustomerLocation }) 
   const profile = user ? await AuthService.getProfile(user.id) : null
 
   return (
-    <header className="sticky top-0 z-50 isolate border-b border-black/5 bg-[#fff8f0] shadow-[0_4px_12px_rgba(0,0,0,0.04)] [background-color:#fff8f0]">
-      <div className="flex h-16 w-full items-center gap-2 px-3 md:h-20 md:gap-3 md:px-4 lg:px-5">
-        <div className="flex shrink-0 items-center gap-2 md:gap-3">
+    <header className="sticky top-0 z-50 isolate w-full max-w-[100vw] overflow-x-clip border-b border-black/5 bg-[#fff8f0] shadow-[0_4px_12px_rgba(0,0,0,0.04)] [background-color:#fff8f0]">
+      <div className="flex h-14 w-full max-w-full items-center gap-1.5 px-2 sm:gap-2 sm:px-3 md:h-20 md:gap-3 md:px-4 lg:px-5">
+        <div className="flex min-w-0 flex-1 items-center gap-1.5 sm:gap-2 md:gap-3">
           <MobileNav isSignedIn={Boolean(user)} />
-          <Link className="flex shrink-0 items-center justify-center bg-transparent" href="/">
+          <Link className="flex min-w-0 shrink items-center justify-center bg-transparent" href="/">
             <img
               alt="BharatMart"
               src="/bharatmart-logo.png"
-              className="block h-11 w-auto max-w-[132px] bg-transparent object-contain md:h-14 md:max-w-[160px]"
+              className="block h-9 w-auto max-w-[120px] bg-transparent object-contain sm:h-11 sm:max-w-[132px] md:h-14 md:max-w-[160px]"
               width={217}
               height={98}
             />
@@ -34,10 +34,16 @@ export async function SiteHeader({ location }: { location?: CustomerLocation }) 
           {location ? <LocationChip location={location} /> : null}
         </div>
 
-        <nav className="ml-auto flex shrink-0 items-center gap-1 md:gap-2">
-          <WishlistLink />
+        <nav className="ml-auto flex shrink-0 items-center gap-0.5 sm:gap-1 md:gap-2">
+          {/* Favourites stay in the mobile menu; keep icon from md up */}
+          <div className="hidden md:block">
+            <WishlistLink />
+          </div>
           <CartLink />
-          <HeaderAuthNav displayName={profile?.name ?? null} isSignedIn={Boolean(user)} />
+          {/* Auth CTAs live in the hamburger on small screens */}
+          <div className="hidden md:block">
+            <HeaderAuthNav displayName={profile?.name ?? null} isSignedIn={Boolean(user)} />
+          </div>
           {!user ? <BecomeSellerButton className="ml-1 hidden lg:inline-flex" /> : null}
         </nav>
       </div>

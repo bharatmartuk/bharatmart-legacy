@@ -19,7 +19,7 @@ import { BecomeSellerButton } from '@/components/layout/BecomeSellerButton'
 const baseLinks = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/products?category=rakhi', label: 'Rakhi shop', icon: Package },
-  { href: '/wishlist', label: 'Favourites', icon: Heart, requiresAuth: true },
+  { href: '/wishlist', label: 'Favourites', icon: Heart },
   { href: '/cart', label: 'Cart', icon: ShoppingCart },
 ] as const
 
@@ -27,9 +27,7 @@ export function MobileNav({ isSignedIn }: { isSignedIn: boolean }) {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const [expanded, setExpanded] = useState<string | null>(null)
-  const links = baseLinks.filter(
-    (link) => !('requiresAuth' in link && link.requiresAuth) || isSignedIn,
-  )
+  const links = baseLinks
 
   return (
     <Sheet onOpenChange={setOpen} open={open}>
