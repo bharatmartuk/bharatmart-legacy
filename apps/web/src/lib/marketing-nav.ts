@@ -25,7 +25,7 @@ export const MARKETING_NAV: MarketingNavItem[] = [
     label: 'Festive Collections',
     children: [
       { label: 'Rakhi', href: '/products?category=rakhi' },
-      { label: 'Diwali', href: '/diwali' },
+      { label: 'Diwali', href: '/diwali', comingSoon: true },
       { label: 'Ganesh', href: '/products?category=ganesh' },
     ],
   },
@@ -51,17 +51,18 @@ export const SEASONAL_CTAS = [
   },
   {
     title: 'Ganesh',
-    description: 'Previous-year Ganesh idols and designs ready for cart.',
+    description: 'Previous-year Ganesh idols — currently out of stock.',
     href: '/products?category=ganesh',
     image: '/gallery/01.jpg',
     accent: '#6A1B9A',
   },
   {
     title: 'Diwali',
-    description: 'Diyas, pooja kits, rangoli and festive decor.',
+    description: 'Diyas, pooja kits, rangoli and festive decor — coming soon.',
     href: '/diwali',
     image: '/seasonal/diwali/banner_2.png',
     accent: '#B3472C',
+    comingSoon: true,
   },
   {
     title: 'Mangoes',

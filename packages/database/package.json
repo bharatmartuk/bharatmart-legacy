@@ -19,6 +19,7 @@
     "db:seed-rakhis": "tsx prisma/seed-rakhis.ts",
     "db:seed-ganesh": "tsx prisma/seed-ganesh.ts",
     "db:mark-rakhis-oos": "tsx prisma/mark-rakhis-oos.ts",
+    "db:mark-ganesh-oos": "tsx prisma/mark-ganesh-oos.ts",
     "db:seed-roli-kit": "tsx prisma/seed-roli-kit.ts",
     "db:organize-rakhi-folders": "tsx prisma/organize-rakhi-folders.ts",
     "db:migrate-product-images": "tsx prisma/migrate-product-images-to-cloudinary.ts",

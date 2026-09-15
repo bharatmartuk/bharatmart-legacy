@@ -23,10 +23,15 @@ export function SeasonalCtaGrid() {
       <div className="-mx-4 flex gap-3 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
         {SEASONAL_CTAS.map((item) => (
           <Link
-            className="group w-[42vw] max-w-[11.5rem] shrink-0 overflow-hidden rounded-xl border border-[#e8d9c8] bg-[#fffaf4] shadow-sm transition hover:border-[#d6c4ad] hover:shadow-md sm:w-auto sm:max-w-none sm:rounded-2xl"
+            className="group relative w-[42vw] max-w-[11.5rem] shrink-0 overflow-hidden rounded-xl border border-[#e8d9c8] bg-[#fffaf4] shadow-sm transition hover:border-[#d6c4ad] hover:shadow-md sm:w-auto sm:max-w-none sm:rounded-2xl"
             href={item.href}
             key={item.title}
           >
+            {'comingSoon' in item && item.comingSoon ? (
+              <span className="absolute right-2 top-2 z-10 rounded-full bg-[#7f5700]/95 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
+                Soon
+              </span>
+            ) : null}
             <div className="aspect-[5/4] overflow-hidden bg-[#f4ede4] sm:aspect-[4/3]">
               <img
                 alt={item.title}
@@ -45,7 +50,7 @@ export function SeasonalCtaGrid() {
                 {item.description}
               </p>
               <span className="mt-1.5 inline-block text-[11px] font-semibold text-[#7f5700] group-hover:underline sm:mt-3 sm:text-sm">
-                Explore →
+                {'comingSoon' in item && item.comingSoon ? 'Coming soon →' : 'Explore →'}
               </span>
             </div>
           </Link>

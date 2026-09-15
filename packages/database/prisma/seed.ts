@@ -62,7 +62,7 @@ const categories = [
     comingSoon: false,
     children: [
       { name: 'Rakhi', slug: 'rakhi', sortOrder: 1 },
-      { name: 'Diwali', slug: 'diwali', sortOrder: 2 },
+      { name: 'Diwali', slug: 'diwali', sortOrder: 2, comingSoon: true },
       { name: 'Ganesh', slug: 'ganesh', sortOrder: 3 },
     ],
   },
@@ -72,7 +72,7 @@ const categories = [
     iconUrl: null as string | null,
     sortOrder: 3,
     comingSoon: true,
-    children: [] as Array<{ name: string; slug: string; sortOrder: number }>,
+    children: [] as Array<{ name: string; slug: string; sortOrder: number; comingSoon?: boolean }>,
   },
   {
     name: 'Indian Groceries',
@@ -770,7 +770,7 @@ async function seedCategories() {
           name: child.name,
           parentId: parent.id,
           isActive: true,
-          comingSoon: false,
+          comingSoon: Boolean((child as { comingSoon?: boolean }).comingSoon),
           sortOrder: child.sortOrder,
         },
         create: {
@@ -778,7 +778,7 @@ async function seedCategories() {
           slug: child.slug,
           parentId: parent.id,
           isActive: true,
-          comingSoon: false,
+          comingSoon: Boolean((child as { comingSoon?: boolean }).comingSoon),
           sortOrder: child.sortOrder,
         },
       })
